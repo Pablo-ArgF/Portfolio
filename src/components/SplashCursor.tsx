@@ -63,7 +63,7 @@ export default function SplashCursor({
   PRESSURE_ITERATIONS = 20,
   CURL = 3,
   SPLAT_RADIUS = 0.2,
-  SPLAT_FORCE = 2000,
+  SPLAT_FORCE = 8000,
   SHADING = false,
   COLOR_UPDATE_SPEED = 100,
   BACK_COLOR = { r: 0, g: 0, b: 0 },
@@ -1285,11 +1285,11 @@ export default function SplashCursor({
   ]);
 
   return (
-    <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div className="tw-absolute tw-inset-0 tw--z-10 tw-pointer-events-none tw-overflow-hidden">
       <canvas
         ref={canvasRef}
         id="fluid"
-        className="w-full h-full block"
+        className="tw-w-full tw-h-full tw-block"
       ></canvas>
     </div>
   );

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SplashCursor from '../components/SplashCursor.tsx'
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 ---
 
 <Layout>
@@ -219,105 +220,7 @@ import SplashCursor from '../components/SplashCursor.tsx'
     </div>
   </section>
 
-  <section
-    class="tw-relative tw-flex tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
-  >
-    <div
-      class="tw-mt-8 tw-flex tw-flex-col tw-place-items-center tw-gap-5"
-    >
-      <div
-        class="reveal-up tw-mt-5 tw-flex tw-flex-col tw-gap-3 tw-text-center"
-      >
-        <h2
-          class="tw-text-4xl tw-font-medium tw-text-gray-200 max-md:tw-text-3xl"
-        >
-          Key benifits
-        </h2>
-      </div>
-      <div
-        class="tw-mt-6 tw-flex tw-max-w-[80%] tw-flex-wrap tw-place-content-center tw-gap-8 max-lg:tw-flex-col"
-      >
-        <div
-          class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-        >
-          <div
-            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-h-[150px]"
-          >
-            <div
-              class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-            >
-              <i
-                class="bi bi-rocket-takeoff-fill tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-              ></i>
-            </div>
-          </div>
-          <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-            <h3
-              class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-            >
-              Minimize hours spent
-            </h3>
-            <div class="tw-text-gray-300">
-              Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit.
-            </div>
-          </div>
-        </div>
-        <div
-          class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-        >
-          <div
-            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-text-[150px]"
-          >
-            <div
-              class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-            >
-              <i
-                class="bi bi-layout-sidebar-inset tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-              ></i>
-            </div>
-          </div>
-          <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-            <h3
-              class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-            >
-              Simple to use
-            </h3>
-            <div class="tw-text-gray-300">
-              Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit.
-            </div>
-          </div>
-        </div>
-        <div
-          class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-        >
-          <div
-            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-h-[150px]"
-          >
-            <div
-              class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-            >
-              <i
-                class="bi bi-lightning-charge-fill tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-              ></i>
-            </div>
-          </div>
-          <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-            <h3
-              class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-            >
-              Speed up your development
-            </h3>
-            <div class="tw-text-gray-300">
-              Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ExperienceTimeline />
 
   <section
     class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
