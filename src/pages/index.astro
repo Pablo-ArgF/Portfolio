@@ -2,6 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import SplashCursor from '../components/SplashCursor.tsx'
 import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+
+import { getCollection } from "astro:content";
+import { ReviewsFlow } from "../components/ReviewsFlow";
+
+const reviews = await getCollection("review");
 ---
 
 <Layout>
@@ -222,140 +227,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 
   <ExperienceTimeline />
 
-  <section
-    class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
-  >
-    <div
-      class="tw-mt-8 tw-flex tw-flex-col tw-place-items-center tw-gap-5"
-    >
-      <div
-        class="reveal-up tw-mt-5 tw-flex tw-flex-col tw-gap-3 tw-text-center"
-      >
-        <h2
-          class="tw-text-4xl tw-font-medium tw-text-gray-200 max-md:tw-text-2xl"
-        >
-          Features loved by everyone
-        </h2>
-      </div>
-      <div
-        class="tw-mt-6 tw-flex tw-max-w-[80%] tw-flex-wrap tw-place-content-center tw-gap-8 max-lg:tw-flex-col"
-      >
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-globe"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              Global
-            </h3>
-            <p class="tw-text-gray-300 max-md:tw-text-sm">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-bar-chart-fill"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              Insights
-            </h3>
-            <p class="tw-text-gray-300 max-md:tw-text-sm">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio laboriosam
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-cloud-fill"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              Cloud backup
-            </h3>
-            <p class="tw-text-gray-300 max-md:tw-text-sm">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio laboriosam
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-fingerprint"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              2 Factor Authentication
-            </h3>
-            <p class="tw-text-gray-300 max-md:tw-text-sm">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio laboriosam
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-sliders"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              3rd party integrations
-            </h3>
-            <p class="tw-text-gray-300 max-md:tw-text-sm">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio laboriosam
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="reveal-up tw-flex tw-h-[200px] tw-w-[450px] tw-gap-8 tw-rounded-xl tw-border-[1px] tw-border-outlineColor tw-bg-secondary tw-p-8 max-md:tw-w-[320px]"
-        >
-          <div class="tw-text-4xl max-md:tw-text-2xl">
-            <i class="bi bi-gear-fill"></i>
-          </div>
-
-          <div class="tw-flex tw-flex-col tw-gap-4">
-            <h3 class="tw-text-2xl max-md:tw-text-xl">
-              Advanced configurations
-            </h3>
-            <p class="tw-text-sm tw-text-gray-300">
-              Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Animi quasi consequuntur,
-              distinctio laboriosam
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReviewsFlow reviews={reviews} client:load />
 
   <section
     class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
@@ -367,11 +239,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
         <div
           class="tw-max-h-[650px] tw-max-w-[850px] tw-overflow-hidden tw-rounded-lg tw-shadow-lg tw-shadow-[rgba(170,49,233,0.44021358543417366)]"
         >
-          <img
-            src="/assets/images/home/dash.png"
-            alt="coding"
-            class="tw-h-full tw-w-full tw-object-cover"
-          />
+          
         </div>
       </div>
       <div
@@ -456,11 +324,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
         <div
           class="tw-max-h-[650px] tw-max-w-[850px] tw-overflow-hidden tw-rounded-lg tw-shadow-lg tw-shadow-[rgba(170,49,233,0.44021358543417366)]"
         >
-          <img
-            src="/assets/images/home/insights.png"
-            alt="coding"
-            class="tw-h-full tw-w-full tw-object-cover"
-          />
+          
         </div>
       </div>
     </div>
@@ -489,11 +353,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/women.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="women"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">Trich B</div>
@@ -514,11 +374,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/man.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="man"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">John B</div>
@@ -538,11 +394,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/man2.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="man"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">Mante</div>
@@ -563,11 +415,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/women.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="man"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">Lara</div>
@@ -588,11 +436,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/man.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="man"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">James</div>
@@ -613,11 +457,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
           <div
             class="tw-h-[50px] tw-w-[50px] tw-overflow-hidden tw-rounded-full"
           >
-            <img
-              src="/assets/images/people/man2.jpg"
-              class="tw-h-full tw-w-full tw-object-cover"
-              alt="man"
-            />
+            
           </div>
           <div class="tw-flex tw-flex-col tw-gap-1">
             <div class="tw-font-semibold">Ron</div>
@@ -742,11 +582,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
         <div
           class="tw-h-[250px] tw-w-full tw-overflow-hidden tw-rounded-md"
         >
-          <img
-            src="/assets/images/home/forest.jpg"
-            alt="article image"
-            class="tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-[0.3s] hover:tw-scale-[1.04]"
-          />
+         
         </div>
         <h3
           class="tw-mt-2 tw-text-2xl tw-font-semibold max-md:tw-text-xl"
@@ -769,11 +605,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
         <div
           class="tw-h-[250px] tw-w-full tw-overflow-hidden tw-rounded-md"
         >
-          <img
-            src="/assets/images/home/mountain.jpg"
-            alt="article image"
-            class="tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-[0.3s] hover:tw-scale-[1.04]"
-          />
+          
         </div>
         <h3
           class="tw-mt-2 tw-text-2xl tw-font-semibold max-md:tw-text-xl"
@@ -796,11 +628,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
         <div
           class="tw-h-[250px] tw-w-full tw-overflow-hidden tw-rounded-md"
         >
-          <img
-            src="/assets/images/home/photography.jpg"
-            alt="article image"
-            class="tw-h-full tw-w-full tw-object-cover tw-transition-transform tw-duration-[0.3s] hover:tw-scale-[1.04]"
-          />
+          
         </div>
         <h3
           class="tw-mt-2 tw-text-2xl tw-font-semibold max-md:tw-text-xl"

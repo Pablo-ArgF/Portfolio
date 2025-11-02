@@ -11,6 +11,16 @@ const experienceCollection = defineCollection({
   }),
 });
 
+
+const reviewCollection = defineCollection({
+  schema: z.object({
+    name: z.string(),
+    linkedinUrl: z.string().url(),
+    imageUrl: z.string().url()
+  }),
+});
+
 export const collections = {
   experience: experienceCollection,
+  review: reviewCollection
 };
