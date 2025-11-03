@@ -9,5 +9,17 @@ export default defineConfig({
     tailwind()
   ],
   site: 'https://pabloaf.com',
-  output: 'static'
+  output: 'static',
+  vite: {
+    server: {
+      host: '0.0.0.0',
+      port: 4321,
+      allowedHosts: ['pabloaf.com']
+    },
+    preview: {
+      host: '0.0.0.0',
+      port: 4321,
+      allowedHosts: ['pabloaf.com']
+    }
+  }
 });
