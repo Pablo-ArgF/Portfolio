@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const experienceCollection = defineCollection({
   schema: z.object({
@@ -11,16 +11,28 @@ const experienceCollection = defineCollection({
   }),
 });
 
-
 const reviewCollection = defineCollection({
   schema: z.object({
     name: z.string(),
-    linkedinUrl: z.string().url(),
-    imageUrl: z.string().url()
+    linkedinUrl: z.string().url().optional(), 
+    imageUrl: z.string().url().optional(),    
+  }),
+});
+
+const projectCollection = defineCollection({
+  schema: z.object({
+    titulo: z.string(),
+    fechaInicio: z.string(),
+    fechaFin: z.string().optional(),
+    skills: z.array(z.string()).optional(),
+    githubUrl: z.string().url().optional(),
+    imagen: z.string().optional(), 
+    descripcion: z.string().optional(), 
   }),
 });
 
 export const collections = {
   experience: experienceCollection,
-  review: reviewCollection
+  review: reviewCollection,
+  project: projectCollection,
 };

@@ -5,8 +5,11 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 
 import { getCollection } from "astro:content";
 import { ReviewsFlow } from "../components/ReviewsFlow";
+import ProjectsShowcase from "../components/ProjectsShowcase.tsx";
+import { promise } from "astro:schema";
 
 const reviews = await getCollection("review");
+const projects = await getCollection("project");
 ---
 
 <Layout>
@@ -101,15 +104,17 @@ const reviews = await getCollection("review");
 
       <div
         class="reveal-up tw-relative tw-mt-8 tw-flex tw-w-full tw-place-content-center tw-place-items-center"
-        id="memoji-container"
+        id="myimage-container"
       >
         <div
           class="tw-relative tw-flex tw-place-content-center tw-place-items-center"
-          id="memoji-wrapper"
+          id="myimage-wrapper"
         >
-          <div class="memoji-placeholder">
-            <i class="bi bi-person-circle tw-text-9xl tw-text-gray-400"></i>
-          </div>
+            <img
+            src="public/me.jpeg"
+            alt="Mi foto"
+            class="tw-rounded-full tw-w-60 tw-h-60 tw-object-cover tw-shadow-lg"
+          />
         </div>
       </div>
     </div>
@@ -229,106 +234,7 @@ const reviews = await getCollection("review");
 
   <ReviewsFlow reviews={reviews} client:load />
 
-  <section
-    class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
-  >
-    <div
-      class="reveal-up tw-flex tw-min-h-[60vh] tw-place-content-center tw-place-items-center tw-gap-[10%] max-lg:tw-flex-col max-lg:tw-gap-10"
-    >
-      <div class="tw-flex">
-        <div
-          class="tw-max-h-[650px] tw-max-w-[850px] tw-overflow-hidden tw-rounded-lg tw-shadow-lg tw-shadow-[rgba(170,49,233,0.44021358543417366)]"
-        >
-          
-        </div>
-      </div>
-      <div
-        class="tw-mt-6 tw-flex tw-max-w-[450px] tw-flex-col tw-gap-4"
-      >
-        <h3 class="tw-text-4xl tw-font-medium max-md:tw-text-2xl">
-          Prueba cambio commit 3
-        </h3>
-
-        <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-          <h4 class="tw-text-xl tw-font-medium">
-            <i class="bi bi-check-all !tw-text-2xl"></i>
-            AI powered
-          </h4>
-          <span
-            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Reiciendis commodi temporibus at? Aspernatur,
-            a necessitatibus?
-          </span>
-        </div>
-        <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-          <h4 class="tw-text-xl tw-font-medium">
-            <i class="bi bi-check-all !tw-text-2xl"></i>
-            Locally run
-          </h4>
-          <span
-            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Reiciendis commodi temporibus at? Aspernatur,
-            a necessitatibus?
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
-  >
-    <div
-      class="reveal-up tw-flex tw-min-h-[60vh] tw-place-content-center tw-place-items-center tw-gap-[10%] max-lg:tw-flex-col max-lg:tw-gap-10"
-    >
-      <div
-        class="tw-mt-6 tw-flex tw-max-w-[450px] tw-flex-col tw-gap-4"
-      >
-        <h3 class="tw-text-4xl tw-font-medium max-md:tw-text-2xl">
-          Powerful Insights
-        </h3>
-
-        <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-          <h4 class="tw-text-xl tw-font-medium">
-            <i class="bi bi-check-all !tw-text-2xl"></i>
-            Easy to use
-          </h4>
-          <span
-            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Reiciendis commodi temporibus at? Aspernatur,
-            a necessitatibus?
-          </span>
-        </div>
-        <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-          <h4 class="tw-text-xl tw-font-medium">
-            <i class="bi bi-check-all !tw-text-2xl"></i>
-            All in one panel
-          </h4>
-          <span
-            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Reiciendis commodi temporibus at? Aspernatur,
-            a necessitatibus?
-          </span>
-        </div>
-      </div>
-
-      <div class="tw-flex">
-        <div
-          class="tw-max-h-[650px] tw-max-w-[850px] tw-overflow-hidden tw-rounded-lg tw-shadow-lg tw-shadow-[rgba(170,49,233,0.44021358543417366)]"
-        >
-          
-        </div>
-      </div>
-    </div>
-  </section>
+  <ProjectsShowcase projects={projects} client:load/>
 
   <section
     class="tw-mt-5 tw-flex tw-min-h-[80vh] tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-p-[2%]"

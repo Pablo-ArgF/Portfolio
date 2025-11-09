@@ -361,13 +361,21 @@ header > .collapsible-header{
     }
     
     /* Mobile memoji adjustments */
-    .memoji-placeholder {
+    .myimage-placeholder {
         width: 150px;
         height: 150px;
     }
     
-    .memoji-placeholder i {
+    .myimage-placeholder i {
         font-size: 4rem !important;
     }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+      
 }
 
