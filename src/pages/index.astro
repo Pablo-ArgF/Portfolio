@@ -231,10 +231,12 @@ const projects = await getCollection("project");
   </section>
 
   <ExperienceTimeline />
+  
+  <ProjectsShowcase projects={projects} client:load/>
 
   <ReviewsFlow reviews={reviews} client:load />
 
-  <ProjectsShowcase projects={projects} client:load/>
+  
 
   <section
     class="tw-mt-5 tw-flex tw-min-h-[80vh] tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-p-[2%]"

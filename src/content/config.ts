@@ -26,6 +26,7 @@ const projectCollection = defineCollection({
     fechaFin: z.string().optional(),
     skills: z.array(z.string()).optional(),
     githubUrl: z.string().url().optional(),
+    projectUrl: z.string().url().optional(),
     imagen: z.string().optional(), 
     descripcion: z.string().optional(), 
   }),
