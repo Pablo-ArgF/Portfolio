@@ -1,0 +1,59 @@
+---
+import DotGrid from "../components/Dotgrid";
+import ProjectCard from "../components/ProjectCard";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("project");
+---
+
+<html lang="en">
+  <head>
+    <title>All Projects</title>
+  </head>
+  <body class="tw-relative tw-bg-neutral-950 tw-text-white tw-min-h-screen">
+    <!-- Fondo animado -->
+    <DotGrid
+      dotSize={4}
+      gap={13}
+      baseColor="#212121"
+      activeColor="#adadad"
+      proximity={200}
+      shockRadius={400}
+      shockStrength={6}
+      resistance={750}
+      returnDuration={1.5}
+      client:only
+    />
+
+    <!-- Botón volver -->
+    <a
+      href="/#projects"
+      class="tw-absolute tw-top-6 tw-left-6 tw-z-30 tw-flex tw-items-center tw-gap-2
+             tw-bg-[#ffffff]/10 hover:tw-bg-[#ffffff]/20 tw-text-white tw-font-semibold
+             tw-rounded-full tw-px-4 tw-py-2 tw-transition-all tw-shadow-md"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-4 tw-w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back
+    </a>
+
+    <section class="tw-relative tw-z-10 tw-flex tw-flex-col tw-items-center tw-py-20 tw-px-6">
+      <h1 class="tw-text-5xl tw-font-extrabold tw-text-white tw-mb-12 tw-text-center">
+        All Projects
+      </h1>
+
+      {/* Contenedor de proyectos igual a la home, sin blur ni ver n */}
+      <div
+        class="
+          tw-relative tw-z-20 tw-flex tw-flex-wrap tw-gap-12 tw-justify-center tw-items-start
+          tw-w-full tw-px-20 tw-pt-16 tw-overflow-hidden
+        "
+      >
+        {projects.map((entry) => (
+          <ProjectCard project={entry.data} slug={entry.slug} client:only/>
+        ))}
+      </div>
+    </section>
+  </body>
+</html>
