@@ -15,16 +15,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
       className={`tw-text-current tw-no-underline tw-flex tw-justify-center ${className}`}
     >
       <motion.div
-  whileHover={{ scale: 1.06, zIndex: 20 }}
-  transition={{ duration: 0.15 }}
-  className={`
-    tw-bg-neutral-900/90 tw-rounded-2xl tw-shadow-lg tw-flex tw-flex-col
-    tw-overflow-hidden tw-border tw-border-neutral-800 tw-transition-transform
-    tw-duration-150 tw-cursor-pointer tw-relative
-    tw-w-full sm:tw-w-[45%] lg:tw-w-[30em] md:tw-w-[40em]
-  `}
-  style={{ minHeight: "450px" }}
->
+        whileHover={{ scale: 1.06, zIndex: 20 }}
+        transition={{ duration: 0.15 }}
+        className={`
+          tw-bg-neutral-900/90 tw-rounded-2xl tw-shadow-lg tw-flex tw-flex-col
+          tw-overflow-hidden tw-border tw-border-neutral-800 tw-transition-transform
+          tw-duration-150 tw-cursor-pointer tw-relative tw-w-full 
+          sm:tw-w-[40em]  md:tw-w-[50em] lg:tw-w-[25em]
+          sm:tw-h-[35em]  md:tw-h-[40em] lg:tw-h-[40em]
+        `}
+        style={{ minHeight: "450px" }}
+      >
         {/* Imagen */}
         {project.imagen && (
           <div className="tw-flex-shrink-0">
@@ -36,15 +37,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
           </div>
         )}
 
-
         {/* Contenido */}
         <div className="tw-p-6 tw-text-center tw-text-neutral-200 tw-flex tw-flex-col tw-flex-grow tw-justify-between">
           <div className="tw-flex tw-flex-col tw-gap-3">
             {/* Título */}
-            <h3 className="tw-text-2xl tw-font-semibold tw-text-white">{project.titulo}</h3>
+            <h3 className="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-2xl tw-font-semibold tw-text-white">
+              {project.titulo}
+            </h3>
 
             {/* Fechas */}
-            <p className="tw-text-sm tw-text-neutral-400">
+            <p className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-text-neutral-400">
               {project.fechaInicio} {project.fechaFin ? `– ${project.fechaFin}` : " - now"}
             </p>
 
@@ -54,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                 {project.skills.map((skill, i) => (
                   <span
                     key={i}
-                    className="tw-text-sm tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-px-3 tw-py-1 tw-rounded-full"
+                    className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-px-3 tw-py-1 tw-rounded-full"
                   >
                     {skill}
                   </span>
@@ -64,7 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
 
             {/* Descripción */}
             {project.descripcion && (
-              <p className="tw-text-base tw-mt-3 tw-text-neutral-400 tw-line-clamp-4">
+              <p className="tw-text-sm sm:tw-text-base md:tw-text-lg tw-mt-3 tw-text-neutral-400 tw-line-clamp-4">
                 {project.descripcion}
               </p>
             )}
@@ -79,9 +81,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff]
-                           tw-text-white tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors"
+                           tw-text-white tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
               >
-                <img src="/github.png" alt="GitHub" className="tw-w-6 tw-h-6 tw-object-contain" />
+                <img src="/github.png" alt="GitHub" className="tw-w-5 sm:tw-w-6 tw-h-5 sm:tw-h-6 tw-object-contain" />
                 <span>GitHub</span>
               </a>
             )}
@@ -93,7 +95,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
-                           tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors"
+                           tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
               >
                 <span>Demo</span>
                 <svg
