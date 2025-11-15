@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@types/three": "^0.181.0",
     "astro": "^5.15.3",
     "framer-motion": "^12.23.24",
