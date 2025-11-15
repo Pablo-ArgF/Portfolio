@@ -14,8 +14,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     image: null as File | null,
   });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [charCount, setCharCount] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string>("");
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, files } = e.target as any;
@@ -24,20 +24,27 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
       setFormData((prev) => ({ ...prev, image: file }));
       setPreviewUrl(URL.createObjectURL(file));
     } else {
-      if (name === "review" && value.length > 95) return;
       setFormData((prev) => ({ ...prev, [name]: value }));
-      if (name === "review") setCharCount(value.length);
     }
+    setError(""); // limpiar error al modificar cualquier campo
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validación de campos obligatorios
+    if (!formData.name.trim() || !formData.review.trim()) {
+      setError("Please provide both your name and a review.");
+      return;
+    }
+
     setSubmitting(true);
     const data = new FormData();
     data.append("name", formData.name);
     data.append("review", formData.review);
     if (formData.linkedinUrl) data.append("linkedinUrl", formData.linkedinUrl);
     if (formData.image) data.append("image", formData.image);
+
     try {
       await fetch("http://api.landing.pabloaf.com/create-review", { method: "POST", body: data });
       onClose();
@@ -55,23 +62,23 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     >
       <form
         onSubmit={handleSubmit}
-        className="tw-bg-neutral-900/90 tw-border tw-border-white/10 tw-rounded-3xl tw-p-8 tw-shadow-2xl tw-flex tw-flex-col tw-items-center tw-gap-4 tw-backdrop-blur-xl tw-relative"
+        className="tw-bg-neutral-900/90 tw-border tw-border-white/10 tw-rounded-3xl tw-p-8 tw-shadow-2xl tw-flex tw-flex-col tw-items-center tw-gap-6 tw-backdrop-blur-xl tw-relative tw-w-[28rem] md:tw-w-[36rem]"
       >
         <button
           type="button"
           onClick={onClose}
           className="tw-absolute tw-top-4 tw-right-4 tw-text-white/80 hover:tw-text-white"
         >
-          <FaTimes size={20} />
+          <FaTimes size={22} />
         </button>
 
-        {/* Avatar + texto */}
-        <div className="tw-bg-white/20 tw-backdrop-blur-xl tw-border tw-border-white/30 tw-rounded-2xl tw-px-5 tw-py-4 tw-w-[22rem] tw-flex tw-items-center tw-gap-4">
-          <div className="tw-relative tw-w-16 tw-h-16">
+        {/* Top Row: Avatar + Name */}
+        <div className="tw-flex tw-w-full tw-gap-4 tw-items-center">
+          <div className="tw-relative tw-w-20 tw-h-20">
             <img
               src={previewUrl || "/reviews/default-avatar.jpg"}
               alt="preview"
-              className="tw-w-full tw-h-full tw-object-cover tw-rounded-full tw-border tw-border-white/40"
+              className="tw-w-full tw-h-full tw-object-cover tw-rounded-full tw-border tw-border-white/30"
             />
             <input
               type="file"
@@ -83,34 +90,33 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
             />
             <label
               htmlFor="image-upload"
-              className="tw-absolute tw-bottom-[-0.6rem] tw-right-[-0.6rem] tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-p-2 tw-rounded-full tw-cursor-pointer tw-shadow-md"
+              className="tw-absolute tw-bottom-[-0.5rem] tw-right-[-0.5rem] tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-p-2 tw-rounded-full tw-cursor-pointer tw-shadow-md"
             >
               <FaUpload size={14} />
             </label>
           </div>
 
-          <div className="tw-flex-1">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleFormChange}
-              className="tw-bg-transparent tw-text-white tw-font-semibold tw-tracking-wide tw-text-base tw-outline-none tw-w-full"
-            />
-            <textarea
-              name="review"
-              placeholder="Write your review (max 95 chars)"
-              value={formData.review}
-              onChange={handleFormChange}
-              className="tw-bg-transparent tw-text-white/80 tw-text-sm tw-leading-snug tw-w-full tw-mt-1 tw-resize-none tw-outline-none"
-            />
-            <div className="tw-text-right tw-text-white/60 tw-text-xs tw-mt-1">{charCount}/95</div>
-          </div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleFormChange}
+            className="tw-flex-1 tw-bg-transparent tw-text-white tw-font-semibold tw-text-lg tw-tracking-wide tw-outline-none tw-border-b tw-border-white/30 tw-py-2"
+          />
         </div>
 
+        {/* Textarea for Review */}
+        <textarea
+          name="review"
+          placeholder="Write your review..."
+          value={formData.review}
+          onChange={handleFormChange}
+          className="tw-bg-transparent tw-text-white/80 tw-text-base tw-leading-relaxed tw-w-full tw-h-48 tw-resize-none tw-rounded-lg tw-p-4 tw-border tw-border-white/20 focus:tw-ring-2 focus:tw-ring-purple-500 focus:tw-outline-none"
+        />
+
         {/* LinkedIn */}
-        <div className="tw-flex tw-items-center tw-gap-2 tw-w-full tw-mt-6">
+        <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
           <FaLinkedin className="tw-text-[#0A66C2] tw-text-2xl" />
           <input
             type="text"
@@ -122,12 +128,15 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
           />
         </div>
 
+        {/* Error */}
+        {error && <p className="tw-text-red-400 tw-text-sm tw-mt-1">{error}</p>}
+
         {/* Submit */}
         <motion.button
-          whileTap={{ scale: 0.9, rotate: -10 }}
+          whileTap={{ scale: 0.95 }}
           disabled={submitting}
           type="submit"
-          className="tw-bg-green-600 hover:tw-bg-green-700 tw-text-white tw-flex tw-items-center tw-gap-2 tw-px-6 tw-py-2 tw-rounded-lg tw-font-medium tw-transition-all tw-duration-300 tw-mt-4"
+          className="tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-flex tw-items-center tw-gap-2 tw-px-6 tw-py-3 tw-rounded-lg tw-font-medium tw-transition-all tw-duration-300"
         >
           <FaPaperPlane className="tw-text-lg" />
           {submitting ? "Sending..." : "Send"}
