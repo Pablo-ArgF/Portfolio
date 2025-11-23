@@ -24,7 +24,7 @@ const getRandomDepth = (): "front" | "middle" | "back" => {
   if (r < 0.8) return "middle";
   return "back";
 };
-const reviewHeights = { front: 120, middle: 100, back: 80 };
+const reviewHeights = { front: 150, middle: 120, back: 100 };
 const minGapY = 10;
 const containerPadding = 10;
 
@@ -63,8 +63,12 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
   useEffect(() => {
     const positions: { top: number; height: number }[] = [];
-    const baseReviews =
-      reviews.length < 4 ? [...reviews, ...reviews.slice(0, 4 - reviews.length)] : reviews;
+    let baseReviews = reviews;
+    if (reviews.length > 15) {
+      baseReviews = reviews.slice(0, 15);
+    } else if (reviews.length < 4) {
+      baseReviews = [...reviews, ...reviews.slice(0, 4 - reviews.length)];
+    }
 
     const init = baseReviews.map((r, i) => {
       const depth = getRandomDepth();
@@ -77,38 +81,42 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setItems((prev) =>
-        prev.map((item, i) => {
-          let newX = item.x + speed;
-          let newY = item.y;
-          let newDepth = item.depth;
-  
+      setItems((prev) => {
+        // Creamos una copia profunda para mutar las posiciones secuencialmente
+        const nextItems = prev.map((item) => ({ ...item }));
+
+        for (let i = 0; i < nextItems.length; i++) {
+          const item = nextItems[i];
+          item.x += speed;
+
           // Cuando sale por la derecha → recalcular Y y profundidad
-          if (newX > 110) {
-            newDepth = getRandomDepth();
-  
-            const otherItems = prev.filter((_, idx) => idx !== i);
-            newY = generateNonOverlappingY(
+          if (item.x > 110) {
+            item.depth = getRandomDepth();
+            item.x = getRandomBetween(-40, -20);
+
+            // Importante: Usar nextItems (que contiene las actualizaciones de esta iteración)
+            // para verificar colisiones. Así evitamos que dos items elijan el mismo hueco
+            // en el mismo tick.
+            const otherItems = nextItems.filter((_, idx) => idx !== i);
+
+            item.y = generateNonOverlappingY(
               otherItems.map((p) => ({
                 top: p.y,
                 height: reviewHeights[p.depth],
               })),
-              newDepth,
+              item.depth,
               containerHeight
             );
-  
-            newX = getRandomBetween(-40, -20);
           }
-  
-          // NO MÁS AJUSTE DINÁMICO DE Y AQUÍ
-          return { ...item, x: newX, y: newY, depth: newDepth };
-        })
-      );
+        }
+
+        return nextItems;
+      });
     }, 20);
-  
+
     return () => clearInterval(interval);
   }, [containerHeight]);
-  
+
 
 
   const depthStyles = {
@@ -126,9 +134,14 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
       {/* Fondo animado con reviews flotantes */}
       <div
-        className={`tw-relative tw-w-full tw-flex-1 tw-overflow-hidden tw-transition-all tw-duration-700 ${
-          showForm ? "tw-blur-md tw-opacity-50" : "tw-blur-0 tw-opacity-100"
-        }`}
+        className={`tw-relative tw-w-full tw-flex-1 tw-overflow-hidden tw-transition-all tw-duration-700 ${showForm ? "tw-blur-md tw-opacity-50" : "tw-blur-0 tw-opacity-100"
+          }`}
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+        }}
       >
         {items.map((item) => {
           const d = depthStyles[item.depth];
@@ -148,7 +161,8 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
       </div>
 
       {/* Botones inferiores */}
-      <div className="tw-absolute tw-bottom-8 tw-flex tw-gap-6 tw-justify-center tw-w-full tw-z-30">
+
+      <div className="tw-absolute tw-bottom-8 tw-flex tw-gap-6 tw-justify-center tw-w-full tw-z-50">
         <button
           onClick={() => setShowForm(true)}
           className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 

@@ -36,7 +36,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
         zIndex,
       }}
     >
-      <div className="tw-flex tw-items-center tw-gap-4 tw-bg-white/20 tw-backdrop-blur-xl tw-border tw-border-white/30 tw-rounded-2xl tw-shadow-lg tw-px-5 tw-py-4 tw-w-[20rem]">
+      <div className="tw-flex tw-items-center tw-gap-4 tw-bg-neutral-900 tw-backdrop-blur-xl tw-border tw-border-white/30 tw-rounded-2xl tw-shadow-lg tw-px-5 tw-py-4 tw-w-[20rem]">
         <div className="tw-w-14 tw-h-14 tw-flex-shrink-0">
           <img
             src={`/reviews/${review.data.name}.jpg`}
