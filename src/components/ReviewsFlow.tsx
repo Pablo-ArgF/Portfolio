@@ -53,7 +53,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
   const [showForm, setShowForm] = useState(false);
   const [containerHeight, setContainerHeight] = useState<number>(window.innerHeight);
 
-  const speed = 0.1;
+  const speed = 0.08;
 
   useEffect(() => {
     const handleResize = () => setContainerHeight(window.innerHeight);
@@ -82,39 +82,33 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
           let newX = item.x + speed;
           let newY = item.y;
           let newDepth = item.depth;
-
+  
+          // Cuando sale por la derecha → recalcular Y y profundidad
           if (newX > 110) {
             newDepth = getRandomDepth();
+  
             const otherItems = prev.filter((_, idx) => idx !== i);
             newY = generateNonOverlappingY(
-              otherItems.map((p) => ({ top: p.y, height: reviewHeights[p.depth] })),
+              otherItems.map((p) => ({
+                top: p.y,
+                height: reviewHeights[p.depth],
+              })),
               newDepth,
               containerHeight
             );
+  
             newX = getRandomBetween(-40, -20);
           }
-
-          prev.forEach((other, idx) => {
-            if (i !== idx) {
-              const h1 = reviewHeights[newDepth];
-              const h2 = reviewHeights[other.depth];
-              if (!(newY + h1 + minGapY <= other.y || newY >= other.y + h2 + minGapY)) {
-                if (newY + h1 / 2 < other.y + h2 / 2) {
-                  newY = other.y - h1 - minGapY;
-                } else {
-                  newY = other.y + h2 + minGapY;
-                }
-                newY = Math.max(containerPadding, Math.min(containerHeight - h1 - containerPadding, newY));
-              }
-            }
-          });
-
+  
+          // NO MÁS AJUSTE DINÁMICO DE Y AQUÍ
           return { ...item, x: newX, y: newY, depth: newDepth };
         })
       );
-    }, 30);
+    }, 20);
+  
     return () => clearInterval(interval);
   }, [containerHeight]);
+  
 
 
   const depthStyles = {

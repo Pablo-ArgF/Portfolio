@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions"
 const { title = 'Pablo Argallero Fernández - Software Engineer', description = 'Software Engineer with two years of experience specializing in AI and Machine Learning. Graduate from University of Oviedo with 13 "with honors" distinctions. Currently working at NTT Data.' } = Astro.props
 ---
 
@@ -27,6 +28,7 @@ const { title = 'Pablo Argallero Fernández - Software Engineer', description = 
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <ClientRouter/>
   </head>
   <body class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white">
     <slot />
