@@ -21,7 +21,7 @@ const contents = await Promise.all(
   <!-- Timeline -->
   <ol class="tw-relative tw-w-full tw-max-w-[900px] tw-flex tw-flex-col tw-mx-auto">
     <!-- Línea vertical -->
-    <div class="tw-absolute tw-left-[84px] tw-top-0 tw-bottom-0 tw-w-[3px] tw-bg-gray-100"></div>
+    <div class="tw-absolute tw-left-8 md:tw-left-[84px] tw-top-0 tw-bottom-0 tw-w-[3px] tw-bg-gray-100"></div>
 
     {experiences.map(({ id, data }) => {
       const item = contents.find((content) => content.id === id);
@@ -29,18 +29,19 @@ const contents = await Promise.all(
       return (
         <li
           id={id}
-          class="tw-relative tw-flex tw-items-start tw-gap-12 tw-ml-[180px] tw-mb-24 tw-opacity-0 tw-translate-y-10 tw-transition-all tw-duration-700 tw-ease-out reveal"
+          class="tw-relative tw-flex tw-items-start tw-gap-12 tw-ml-24 md:tw-ml-[180px] tw-mb-24 tw-opacity-0 tw-translate-y-10 tw-transition-all tw-duration-700 tw-ease-out reveal"
         >
           <!-- Esfera del logo -->
           <span
-            class="tw-absolute tw-left-[-140px] tw-flex tw-items-center tw-justify-center tw-w-24 tw-h-24 
+            class="tw-absolute tw-left-[-6rem] md:tw-left-[-140px] tw-flex tw-items-center tw-justify-center 
+                   tw-w-16 tw-h-16 md:tw-w-24 md:tw-h-24
                    tw-bg-gradient-to-b tw-from-gray-900 tw-to-gray-700 tw-rounded-full 
-                   tw-border tw-border-gray-500 tw-ring-8 tw-ring-gray-900/30 tw-shadow-xl"
+                   tw-border tw-border-gray-500 tw-ring-4 md:tw-ring-8 tw-ring-gray-900/30 tw-shadow-xl"
           >
             <img
               src={data.logo}
               alt={data.company}
-              class="tw-w-16 tw-h-16.5 tw-object-contain tw-filter tw-grayscale 
+              class="tw-w-10 tw-h-10 md:tw-w-16 md:tw-h-16.5 tw-object-contain tw-filter tw-grayscale 
                      tw-transition-all tw-duration-500 hover:tw-grayscale-0"
             />
           </span>
@@ -78,18 +79,20 @@ const contents = await Promise.all(
 
 <!-- Script para animar al hacer scroll -->
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('tw-opacity-0', 'tw-translate-y-10');
-          entry.target.classList.add('tw-opacity-100', 'tw-translate-y-0');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  document.addEventListener('astro:page-load', () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('tw-opacity-0', 'tw-translate-y-10');
+            entry.target.classList.add('tw-opacity-100', 'tw-translate-y-0');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  });
 </script>

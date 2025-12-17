@@ -27,14 +27,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({
 
     emailjs
       .send(
-        "default_service",  
-        "template_ssskapj",  
+        "default_service",
+        "template_ssskapj",
         {
           from_name: form.name,
           from_email: form.email,
           message: form.message,
         },
-        {publicKey:"mOFa4LUBphaGefNlQ"}
+        { publicKey: "mOFa4LUBphaGefNlQ" }
       )
       .then(() => setStatus("sent"))
       .catch(() => setStatus("error"));
@@ -133,8 +133,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             {status === "loading"
               ? "Sending..."
               : status === "sent"
-              ? "Email sent!"
-              : "Send message"}
+                ? "Email sent!"
+                : "Send message"}
           </button>
 
           {status === "error" && (
@@ -144,7 +144,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           )}
         </form>
         <script type="text/javascript">
-            emailjs.init('mOFa4LUBphaGefNlQ')
+          emailjs.init('mOFa4LUBphaGefNlQ')
         </script>
       </div>
     </section>

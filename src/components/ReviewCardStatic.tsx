@@ -13,14 +13,14 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
   const Wrapper: React.ElementType = hasLinkedin ? "a" : "div";
   const wrapperProps = hasLinkedin
     ? {
-        href: review.data.linkedinUrl,
-        target: "_blank",
-        rel: "noopener noreferrer",
-        className: "tw-block tw-cursor-pointer hover:tw-opacity-80 tw-transition tw-w-full",
-      }
+      href: review.data.linkedinUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "tw-block tw-cursor-pointer hover:tw-opacity-80 tw-transition tw-w-full",
+    }
     : {
-        className: "tw-block tw-w-full hover:tw-opacity-80 tw-transition",
-      };
+      className: "tw-block tw-w-full hover:tw-opacity-80 tw-transition",
+    };
 
   return (
     <Wrapper {...wrapperProps}>
@@ -39,12 +39,12 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
         "
       >
         {/* TOP SECTION: IMAGE + NAME */}
-        <div className="tw-flex tw-items-center tw-gap-[clamp(0.5rem,3vw,1.5rem)]">
+        <div className="tw-flex tw-items-center tw-gap-4">
           <div
             className="
               tw-flex-shrink-0
-              tw-w-[clamp(5em,4.5vw,6em)]
-              tw-h-[clamp(5em,4.5vw,6em)]
+              tw-w-[clamp(3rem,4vw,4rem)]
+              tw-h-[clamp(3rem,4vw,4rem)]
             "
           >
             <img
@@ -62,7 +62,7 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
           <span
             className="
               tw-text-white tw-font-semibold tw-tracking-wide
-              [font-size:clamp(1.1rem,1.3rem,1.7rem)]
+              [font-size:clamp(1rem,1.2vw,1.25rem)]
             "
           >
             {review.data.name}
@@ -73,7 +73,7 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
         <p
           className="
             tw-text-white/90
-            [font-size:clamp(1rem,1.4rem,1.3rem)]
+            tw-text-sm md:tw-text-base
             tw-leading-relaxed tw-whitespace-pre-line
           "
         >

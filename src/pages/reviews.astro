@@ -30,13 +30,11 @@ const reviews: { data: InferEntrySchema<"review">; body: string }[] =
       class="tw-absolute tw-top-4 tw-left-4 tw-z-30 tw-flex tw-items-center tw-gap-2
         tw-bg-white/10 hover:tw-bg-white/20 tw-text-white tw-font-semibold tw-rounded-full
         tw-transition-all tw-shadow-md
-        tw-px-[clamp(1rem,2vw,1.1rem)]
-        tw-py-[clamp(1rem,1.2vw,1rem)]
-        [font-size:clamp(1rem,1vw,1.8rem)]"
+        tw-px-4 tw-py-2 tw-text-sm md:tw-text-base"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="tw-flex-shrink-0 tw-h-[clamp(1rem,2.6vw,2.2rem)] tw-w-[clamp(1rem,2.6vw,2.2rem)]"
+        class="tw-flex-shrink-0 tw-h-5 tw-w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -54,14 +52,14 @@ const reviews: { data: InferEntrySchema<"review">; body: string }[] =
     >
       <h1
         class="tw-font-extrabold tw-text-center tw-mb-12
-        [font-size:clamp(3rem,6vw,3.5rem)]"
+        [font-size:clamp(2rem,5vw,3rem)]"
       >
         All the reviews
       </h1>
 
       <!-- Grid responsive -->
       <div
-        class="tw-grid tw-gap-10 tw-w-full
+        class="tw-grid tw-gap-10 tw-w-full tw-max-w-7xl tw-mx-auto
           tw-px-[clamp(1rem,3vw,5rem)]
           tw-pt-10 tw-pb-20
           tw-grid-cols-1

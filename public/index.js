@@ -51,6 +51,16 @@ function responsive() {
 
 window.addEventListener("resize", responsive)
 
+// Close menu when clicking on a link
+const headerLinks = document.querySelectorAll('.header-links')
+headerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (!isHeaderCollapsed && window.innerWidth < RESPONSIVE_WIDTH) {
+            toggleHeader()
+        }
+    })
+})
+
 
 /**
  * Animations
@@ -101,7 +111,7 @@ faqAccordion.forEach(function (btn) {
 
         // Toggle 'rotate' class to rotate the arrow
         let content = this.nextElementSibling
-        
+
         // content.classList.toggle('!tw-hidden')
         if (content.style.maxHeight === '200px') {
             content.style.maxHeight = '0px'
@@ -122,14 +132,16 @@ const sections = gsap.utils.toArray("section")
 
 sections.forEach((sec) => {
 
-    const revealUptimeline = gsap.timeline({paused: true, 
-                                            scrollTrigger: {
-                                                            trigger: sec,
-                                                            start: "10% 80%", // top of trigger hits the top of viewport
-                                                            end: "20% 90%",
-                                                            // markers: true,
-                                                            // scrub: 1,
-                                                        }})
+    const revealUptimeline = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+            trigger: sec,
+            start: "10% 80%", // top of trigger hits the top of viewport
+            end: "20% 90%",
+            // markers: true,
+            // scrub: 1,
+        }
+    })
 
     revealUptimeline.to(sec.querySelectorAll(".reveal-up"), {
         opacity: 1,

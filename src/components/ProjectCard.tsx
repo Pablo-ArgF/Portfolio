@@ -20,12 +20,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
         whileHover={{ scale: 1.06, zIndex: 20 }}
         transition={{ duration: 0.15 }}
         className={`
-          tw-bg-neutral-900/90 tw-rounded-2xl tw-shadow-lg tw-flex tw-flex-col
-          tw-overflow-hidden tw-border tw-border-neutral-800 tw-transition-transform
-          tw-duration-150 tw-cursor-pointer tw-relative tw-w-full 
-          sm:tw-w-[40em]  md:tw-w-[50em] lg:tw-w-[25em]
-          sm:tw-h-[35em]  md:tw-h-[40em] lg:tw-h-[40em]
-        `}
+            tw-bg-neutral-900/90 tw-rounded-2xl tw-shadow-lg tw-flex tw-flex-col
+            tw-overflow-hidden tw-border tw-border-neutral-800 tw-transition-transform
+            tw-duration-150 tw-cursor-pointer tw-relative
+            tw-w-full tw-max-w-[30em]
+            sm:tw-h-[35em] md:tw-h-[40em] lg:tw-h-[40em]
+          `}
         style={{ minHeight: "450px" }}
       >
         {/* Imagen */}
