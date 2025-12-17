@@ -65,7 +65,7 @@ const contents = await Promise.all(
             <p class="tw-text-gray-400">{data.company} — {data.location}</p>
 
             {Content && (
-              <div class="tw-mt-3 tw-text-gray-300 tw-leading-relaxed">
+              <div class="tw-mt-3 tw-text-gray-300 tw-leading-relaxed [&>p]:tw-mb-4">
                 <Content />
               </div>
             )}
@@ -88,7 +88,7 @@ const contents = await Promise.all(
         }
       });
     },
-    { threshold: 0.9 }
+    { threshold: 0.1 }
   );
 
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));

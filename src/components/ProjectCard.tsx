@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { InferEntrySchema } from "astro:content";
+import { trackEvent } from "../utils/analytics";
 
 interface ProjectCardProps {
   project: InferEntrySchema<"project">;
@@ -13,6 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
     <a
       href={`/projects/${slug}`}
       className={`tw-text-current tw-no-underline tw-flex tw-justify-center ${className}`}
+      onClick={() => trackEvent("Project Card Click", { project: project.titulo })}
     >
       <motion.div
         whileHover={{ scale: 1.06, zIndex: 20 }}
@@ -52,21 +54,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
 
             {/* Skills */}
             {project.skills && project.skills.length > 0 && (
-              <div className="tw-flex tw-flex-wrap tw-justify-center tw-gap-2 tw-mt-2">
-                {project.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-px-3 tw-py-1 tw-rounded-full"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="tw-flex tw-justify-center tw-mt-2 tw-w-full">
+                <div className="tw-flex tw-flex-nowrap tw-gap-2 tw-overflow-hidden tw-max-w-full [mask-image:linear-gradient(to_right,black_85%,transparent_100%)]">
+                  {project.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-px-3 tw-py-1 tw-rounded-full tw-whitespace-nowrap tw-flex-shrink-0"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 
             {/* Descripción */}
             {project.descripcion && (
-              <p className="tw-text-sm sm:tw-text-base md:tw-text-lg tw-mt-3 tw-text-neutral-400 tw-line-clamp-4">
+              <p className="tw-text-sm sm:tw-text-base md:tw-text-lg tw-mt-3 tw-text-neutral-400 tw-line-clamp-3">
                 {project.descripcion}
               </p>
             )}
@@ -79,7 +83,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  trackEvent("Project Github Click", { project: project.titulo });
+                }}
                 className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff]
                            tw-text-white tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
               >
@@ -93,11 +100,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                 href={project.projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  trackEvent("Project Demo Click", { project: project.titulo });
+                }}
                 className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
                            tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
               >
-                <span>Demo</span>
+                <span>Visit</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="tw-h-4 tw-w-4"

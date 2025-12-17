@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SplashCursor from '../components/SplashCursor.tsx'
+import SplashCursor from "../components/SplashCursor.tsx";
 import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 
 import { getCollection } from "astro:content";
@@ -10,108 +10,108 @@ import { promise } from "astro:schema";
 import ContactSection from "../components/ContactSection";
 
 const reviews = await getCollection("review");
-const projects = await getCollection("project");
+const projects = (await getCollection("project")).sort((a, b) =>
+  b.data.fechaInicio.localeCompare(a.data.fechaInicio),
+);
 ---
 
 <Layout>
   <header
     class="tw-max-w-lg:tw-px-4 tw-max-w-lg:tw-mr-auto tw-absolute tw-top-0 tw-z-20 tw-flex tw-h-[60px] tw-w-full tw-bg-opacity-0 tw-px-[5%] lg:tw-justify-around"
   >
-    
     <div
       class="collapsible-header animated-collapse max-lg:tw-shadow-md"
       id="collapsed-header-items"
     >
-    <div
-    class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base 
-          max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 
+      <div
+        class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base
+          max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5
           lg:tw-mx-auto lg:tw-place-items-center
           tw-bg-neutral-1000 tw-backdrop-blur-md tw-px-4 tw-py-2 tw-rounded-xl tw-z-50"
-    >
-      <a class="header-links" href="#techStack">Tech Stack</a>
-      <a class="header-links" href="#experience">Experience</a>
-      <a class="header-links" href="#projects">Projects</a>
-      <a class="header-links" href="#reviews">Reviews</a>
-      <a class="header-links" href="#contact">Contact</a>
-    </div>
-  
-      
+      >
+        <a class="header-links" href="#techStack">Tech Stack</a>
+        <a class="header-links" href="#experience">Experience</a>
+        <a class="header-links" href="#projects">Projects</a>
+        <a class="header-links" href="#reviews">Reviews</a>
+        <a class="header-links" href="#contact">Contact</a>
+      </div>
     </div>
     <button
       class="bi bi-list tw-absolute tw-right-3 tw-top-3 tw-z-50 tw-text-3xl tw-text-white lg:tw-hidden"
       onclick="toggleHeader()"
       aria-label="menu"
-      id="collapse-btn"
-    ></button>
+      id="collapse-btn"></button>
   </header>
 
   <section
     class="hero-section tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-md:tw-mt-[50px]"
     id="hero-section"
   >
-  <div>
-    <SplashCursor client:load />
-    <div
-      class="tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
-    >
+    <div>
+      <SplashCursor client:load />
       <div
-        class="tw-flex tw-flex-col tw-place-content-center tw-items-center"
+        class="tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
       >
         <div
-          class="reveal-up gradient-text tw-text-center tw-text-6xl tw-font-semibold tw-uppercase tw-leading-[80px] max-lg:tw-text-4xl max-md:tw-leading-snug"
+          class="tw-flex tw-flex-col tw-place-content-center tw-items-center"
         >
-          <span class=""> Pablo Argallero </span>
-          <br />
-          <span class=""> Fernández </span>
-        </div>
-        <div
-          class="reveal-up tw-mt-10 tw-max-w-[450px] tw-p-2 tw-text-center tw-text-gray-300 max-lg:tw-max-w-full"
-        >
-          Software Engineer with two years of experience specializing in AI and Machine Learning. Graduate from University of Oviedo with 13 'with honors' distinctions. Currently working at NTT Data.
-        </div>
+          <div
+            class="reveal-up gradient-text tw-text-center tw-text-6xl tw-font-semibold tw-uppercase tw-leading-[80px] max-lg:tw-text-4xl max-md:tw-leading-snug"
+          >
+            <span class=""> Pablo Argallero </span>
+            <br />
+            <span class=""> Fernández </span>
+          </div>
+          <div
+            class="reveal-up tw-mt-10 tw-max-w-[500px] tw-p-2 tw-text-center tw-text-gray-300 max-lg:tw-max-w-full"
+          >
+            Software Engineer with two years of experience specializing in AI
+            and Machine Learning. Graduate from University of Oviedo with 13
+            'with honors' distinctions. Currently working at NTT Data.
+          </div>
 
-        <div
-          class="reveal-up tw-mt-10 tw-flex tw-place-items-center tw-gap-4"
-        >
+          <div
+            class="reveal-up tw-mt-10 tw-flex tw-place-items-center tw-gap-4"
+          >
             <a
-            href="/Pablo_Argallero_resume.pdf"
-            download="Pablo_Argallero_resume.pdf"
-            class="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
+              href="/Pablo_Argallero_resume.pdf"
+              download="Pablo_Argallero_resume.pdf"
+              class="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
                       tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors"
-          >
-            <span>Download CV</span>
-          </a>
-          <a
-            class="btn tw-flex tw-gap-2 !tw-bg-black !tw-text-white tw-transition-colors tw-duration-[0.3s] hover:!tw-bg-white hover:!tw-text-black"
-            href="#contact"
-          >
-            <i class="bi bi-envelope-fill"></i>
-            <span>Contact Me</span>
-          </a>
+            >
+              <span>Download CV</span>
+            </a>
+            <a
+              class="btn tw-flex tw-gap-2 !tw-bg-black !tw-text-white tw-transition-colors tw-duration-[0.3s] hover:!tw-bg-white hover:!tw-text-black"
+              href="#contact"
+            >
+              <i class="bi bi-envelope-fill"></i>
+              <span>Contact Me</span>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div
-        class="reveal-up tw-relative tw-mt-8 tw-flex tw-w-full tw-place-content-center tw-place-items-center"
-        id="myimage-container"
-      >
         <div
-          class="tw-relative tw-flex tw-place-content-center tw-place-items-center"
-          id="myimage-wrapper"
+          class="reveal-up tw-relative tw-mt-8 tw-flex tw-w-full tw-place-content-center tw-place-items-center"
+          id="myimage-container"
         >
-          <img
-            src="me.jpeg"
-            alt="Mi foto"
-            class="tw-rounded-full tw-w-60 tw-h-60 tw-object-cover tw-shadow-lg"
-          />
+          <div
+            class="tw-relative tw-flex tw-place-content-center tw-place-items-center"
+            id="myimage-wrapper"
+          >
+            <img
+              src="me.jpeg"
+              alt="Mi foto"
+              class="tw-rounded-full tw-w-60 tw-h-60 tw-object-cover tw-shadow-lg"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
 
   <section
-    id = "techStack"
+    id="techStack"
     class="tw-relative tw-flex tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-8"
   >
     <h2 class="tw-text-4xl tw-font-medium tw-text-gray-200 max-md:tw-text-3xl">
@@ -121,120 +121,247 @@ const projects = await getCollection("project");
     <div class="reveal-up tech-stack-carousel">
       <div class="tech-stack-track">
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+            alt="Java"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            alt="Python"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JavaScript"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+            alt="TypeScript"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+            alt="SQL"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+            alt="React"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg"
+            alt="Angular"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg" alt="Thymeleaf" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg"
+            alt="Thymeleaf"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg"
+            alt="Oracle"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" alt="MariaDB" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg"
+            alt="MariaDB"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+            alt="PostgreSQL"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+            alt="MongoDB"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+            alt="Spring Boot"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="Hibernate" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg"
+            alt="Hibernate"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lombok/lombok-original.svg" alt="Lombok" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lombok/lombok-original.svg"
+            alt="Lombok"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mapstruct/mapstruct-original.svg" alt="MapStruct" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mapstruct/mapstruct-original.svg"
+            alt="MapStruct"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+            alt="Java"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            alt="Python"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JavaScript"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+            alt="TypeScript"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+            alt="SQL"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+            alt="React"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg"
+            alt="Angular"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg" alt="Thymeleaf" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg"
+            alt="Thymeleaf"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg"
+            alt="Oracle"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" alt="MariaDB" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg"
+            alt="MariaDB"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+            alt="PostgreSQL"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+            alt="MongoDB"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+            alt="Spring Boot"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="Hibernate" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg"
+            alt="Hibernate"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lombok/lombok-original.svg" alt="Lombok" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lombok/lombok-original.svg"
+            alt="Lombok"
+            class="tech-icon"
+          />
         </div>
         <div class="tech-logo">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mapstruct/mapstruct-original.svg" alt="MapStruct" class="tech-icon" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mapstruct/mapstruct-original.svg"
+            alt="MapStruct"
+            class="tech-icon"
+          />
         </div>
       </div>
     </div>
   </section>
-  <div id= "experience">
+  <div id="experience">
     <ExperienceTimeline />
   </div>
-  <div id= "projects">
-    <ProjectsShowcase projects={projects} client:only/>
+  <div id="projects">
+    <ProjectsShowcase projects={projects} client:only />
   </div>
-  <div id= "reviews">
+  <div id="reviews">
     <ReviewsFlow reviews={reviews} client:only />
   </div>
 
-  <div id= "contact">
-    <ContactSection 
+  <div id="contact">
+    <ContactSection
       githubUrl="https://github.com/Pablo-ArgF"
       linkedinUrl="https://www.linkedin.com/in/pablo-argallero/"
       client:only
     />
   </div>
-  
 </Layout>
