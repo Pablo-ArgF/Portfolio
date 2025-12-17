@@ -46,7 +46,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     if (formData.image) data.append("image", formData.image);
 
     try {
-      await fetch("http://api.landing.pabloaf.com/create-review", { method: "POST", body: data });
+      await fetch("https://api.landing.pabloaf.com/create-review", { method: "POST", body: data });
       onClose();
     } finally {
       setSubmitting(false);
