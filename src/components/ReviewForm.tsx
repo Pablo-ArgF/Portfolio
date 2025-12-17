@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FaLinkedin, FaPaperPlane, FaUpload, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaLinkedin, FaPaperPlane, FaUpload, FaTimes, FaCheckCircle } from "react-icons/fa";
 
 interface ReviewFormProps {
   onClose: () => void;
@@ -15,6 +15,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string>("");
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,8 +47,15 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     if (formData.image) data.append("image", formData.image);
 
     try {
-      await fetch("http://landing.pabloaf.com/create-review", { method: "POST", body: data });
-      onClose();
+      await fetch("https://landing.pabloaf.com/create-review", { method: "POST", body: data });
+      setIsSuccess(true);
+      // Cerrar automáticamente después de 3 segundos
+      setTimeout(() => {
+        onClose();
+      }, 6000);
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -60,88 +68,119 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
       exit={{ opacity: 0, scale: 0.9 }}
       className="tw-fixed tw-inset-0 tw-flex tw-items-center tw-justify-center tw-z-50"
     >
-      <form
-        onSubmit={handleSubmit}
-        className="tw-bg-neutral-900/90 tw-border tw-border-white/10 tw-rounded-3xl tw-p-8 tw-shadow-2xl tw-flex tw-flex-col tw-items-center tw-gap-6 tw-backdrop-blur-xl tw-relative tw-w-[28rem] md:tw-w-[36rem]"
-      >
+      <div className="tw-bg-neutral-900/90 tw-border tw-border-white/10 tw-rounded-3xl tw-p-8 tw-shadow-2xl tw-backdrop-blur-xl tw-relative tw-w-[28rem] md:tw-w-[36rem] tw-overflow-hidden">
         <button
           type="button"
           onClick={onClose}
-          className="tw-absolute tw-top-4 tw-right-4 tw-text-white/80 hover:tw-text-white"
+          className="tw-absolute tw-top-4 tw-right-4 tw-text-white/80 hover:tw-text-white tw-z-10"
         >
           <FaTimes size={22} />
         </button>
 
-        {/* Top Row: Avatar + Name */}
-        <div className="tw-flex tw-w-full tw-gap-4 tw-items-center">
-          <div className="tw-relative tw-w-20 tw-h-20">
-            <img
-              src={previewUrl || "/reviews/default-avatar.jpg"}
-              alt="preview"
-              className="tw-w-full tw-h-full tw-object-cover tw-rounded-full tw-border tw-border-white/30"
-            />
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              id="image-upload"
-              onChange={handleFormChange}
-              className="tw-hidden"
-            />
-            <label
-              htmlFor="image-upload"
-              className="tw-absolute tw-bottom-[-0.5rem] tw-right-[-0.5rem] tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-p-2 tw-rounded-full tw-cursor-pointer tw-shadow-md"
+        <AnimatePresence mode="wait">
+          {isSuccess ? (
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-center tw-py-10 tw-gap-4"
             >
-              <FaUpload size={14} />
-            </label>
-          </div>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className="tw-text-green-500"
+              >
+                <FaCheckCircle size={80} />
+              </motion.div>
+              <h3 className="tw-text-2xl tw-font-bold tw-text-white">Review Submitted!</h3>
+              <p className="tw-text-neutral-400 tw-max-w-xs">
+                Thank you for your feedback. Your review has been sent efficiently and will be posted after a quick verification.
+              </p>
+            </motion.div>
+          ) : (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onSubmit={handleSubmit}
+              className="tw-flex tw-flex-col tw-items-center tw-gap-6"
+            >
+              {/* Top Row: Avatar + Name */}
+              <div className="tw-flex tw-w-full tw-gap-4 tw-items-center">
+                <div className="tw-relative tw-w-20 tw-h-20">
+                  <img
+                    src={previewUrl || "/reviews/default-avatar.jpg"}
+                    alt="preview"
+                    className="tw-w-full tw-h-full tw-object-cover tw-rounded-full tw-border tw-border-white/30"
+                  />
+                  <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    id="image-upload"
+                    onChange={handleFormChange}
+                    className="tw-hidden"
+                  />
+                  <label
+                    htmlFor="image-upload"
+                    className="tw-absolute tw-bottom-[-0.5rem] tw-right-[-0.5rem] tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-p-2 tw-rounded-full tw-cursor-pointer tw-shadow-md"
+                  >
+                    <FaUpload size={14} />
+                  </label>
+                </div>
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleFormChange}
-            className="tw-flex-1 tw-bg-transparent tw-text-white tw-font-semibold tw-text-lg tw-tracking-wide tw-outline-none tw-border-b tw-border-white/30 tw-py-2"
-          />
-        </div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  className="tw-flex-1 tw-bg-transparent tw-text-white tw-font-semibold tw-text-lg tw-tracking-wide tw-outline-none tw-border-b tw-border-white/30 tw-py-2"
+                />
+              </div>
 
-        {/* Textarea for Review */}
-        <textarea
-          name="review"
-          placeholder="Write your review..."
-          value={formData.review}
-          onChange={handleFormChange}
-          className="tw-bg-transparent tw-text-white/80 tw-text-base tw-leading-relaxed tw-w-full tw-h-48 tw-resize-none tw-rounded-lg tw-p-4 tw-border tw-border-white/20 focus:tw-ring-2 focus:tw-ring-purple-500 focus:tw-outline-none"
-        />
+              {/* Textarea for Review */}
+              <textarea
+                name="review"
+                placeholder="Write your review..."
+                value={formData.review}
+                onChange={handleFormChange}
+                className="tw-bg-transparent tw-text-white/80 tw-text-base tw-leading-relaxed tw-w-full tw-h-48 tw-resize-none tw-rounded-lg tw-p-4 tw-border tw-border-white/20 focus:tw-ring-2 focus:tw-ring-purple-500 focus:tw-outline-none"
+              />
 
-        {/* LinkedIn */}
-        <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
-          <FaLinkedin className="tw-text-[#0A66C2] tw-text-2xl" />
-          <input
-            type="text"
-            name="linkedinUrl"
-            placeholder="LinkedIn URL (optional)"
-            value={formData.linkedinUrl}
-            onChange={handleFormChange}
-            className="tw-px-4 tw-py-2 tw-rounded-md tw-bg-[#0A66C2]/20 tw-text-white tw-border tw-border-[#0A66C2]/40 tw-w-full focus:tw-ring-2 focus:tw-ring-[#0A66C2]"
-          />
-        </div>
+              {/* LinkedIn */}
+              <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
+                <FaLinkedin className="tw-text-[#0A66C2] tw-text-2xl" />
+                <input
+                  type="text"
+                  name="linkedinUrl"
+                  placeholder="LinkedIn URL (optional)"
+                  value={formData.linkedinUrl}
+                  onChange={handleFormChange}
+                  className="tw-px-4 tw-py-2 tw-rounded-md tw-bg-[#0A66C2]/20 tw-text-white tw-border tw-border-[#0A66C2]/40 tw-w-full focus:tw-ring-2 focus:tw-ring-[#0A66C2]"
+                />
+              </div>
 
-        {/* Error */}
-        {error && <p className="tw-text-red-400 tw-text-sm tw-mt-1">{error}</p>}
+              {/* Error */}
+              {error && <p className="tw-text-red-400 tw-text-sm tw-mt-1">{error}</p>}
 
-        {/* Submit */}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          disabled={submitting}
-          type="submit"
-          className="tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-flex tw-items-center tw-gap-2 tw-px-6 tw-py-3 tw-rounded-lg tw-font-medium tw-transition-all tw-duration-300"
-        >
-          <FaPaperPlane className="tw-text-lg" />
-          {submitting ? "Sending..." : "Send"}
-        </motion.button>
-      </form>
+              {/* Submit */}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                disabled={submitting}
+                type="submit"
+                className="tw-bg-purple-600 hover:tw-bg-purple-700 tw-text-white tw-flex tw-items-center tw-gap-2 tw-px-6 tw-py-3 tw-rounded-lg tw-font-medium tw-transition-all tw-duration-300"
+              >
+                <FaPaperPlane className="tw-text-lg" />
+                {submitting ? "Sending..." : "Send"}
+              </motion.button>
+            </motion.form>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.div>
   );
 };
