@@ -1192,43 +1192,67 @@ export default function SplashCursor({
       return ((value - min) % range) + min;
     }
 
+    function getRelativeMousePosition(eventClientX: number, eventClientY: number) {
+      if (!canvas) return null;
+      const rect = canvas.getBoundingClientRect();
+      if (
+        eventClientX < rect.left ||
+        eventClientX > rect.right ||
+        eventClientY < rect.top ||
+        eventClientY > rect.bottom
+      ) {
+        return null;
+      }
+      return {
+        x: scaleByPixelRatio(eventClientX - rect.left),
+        y: scaleByPixelRatio(eventClientY - rect.top)
+      };
+    }
+
     window.addEventListener('mousedown', e => {
+      const pos = getRelativeMousePosition(e.clientX, e.clientY);
+      if (!pos) return;
+
       const pointer = pointers[0];
-      const posX = scaleByPixelRatio(e.clientX);
-      const posY = scaleByPixelRatio(e.clientY);
-      updatePointerDownData(pointer, -1, posX, posY);
+      updatePointerDownData(pointer, -1, pos.x, pos.y);
       clickSplat(pointer);
     });
 
     function handleFirstMouseMove(e: MouseEvent) {
       const pointer = pointers[0];
-      const posX = scaleByPixelRatio(e.clientX);
-      const posY = scaleByPixelRatio(e.clientY);
-      const color = generateColor();
+      const pos = getRelativeMousePosition(e.clientX, e.clientY);
+
       updateFrame();
-      updatePointerMoveData(pointer, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
+
+      if (pos) {
+        const color = generateColor();
+        updatePointerMoveData(pointer, pos.x, pos.y, color);
+      }
     }
     document.body.addEventListener('mousemove', handleFirstMouseMove);
 
     window.addEventListener('mousemove', e => {
+      const pos = getRelativeMousePosition(e.clientX, e.clientY);
+      if (!pos) return;
+
       const pointer = pointers[0];
-      const posX = scaleByPixelRatio(e.clientX);
-      const posY = scaleByPixelRatio(e.clientY);
       const color = pointer.color;
-      updatePointerMoveData(pointer, posX, posY, color);
+      updatePointerMoveData(pointer, pos.x, pos.y, color);
     });
 
     function handleFirstTouchStart(e: TouchEvent) {
       const touches = e.targetTouches;
       const pointer = pointers[0];
-      for (let i = 0; i < touches.length; i++) {
-        const posX = scaleByPixelRatio(touches[i].clientX);
-        const posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame();
-        updatePointerDownData(pointer, touches[i].identifier, posX, posY);
-      }
+      updateFrame();
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
+
+      for (let i = 0; i < touches.length; i++) {
+        const pos = getRelativeMousePosition(touches[i].clientX, touches[i].clientY);
+        if (pos) {
+          updatePointerDownData(pointer, touches[i].identifier, pos.x, pos.y);
+        }
+      }
     }
     document.body.addEventListener('touchstart', handleFirstTouchStart);
 
@@ -1238,9 +1262,10 @@ export default function SplashCursor({
         const touches = e.targetTouches;
         const pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) {
-          const posX = scaleByPixelRatio(touches[i].clientX);
-          const posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerDownData(pointer, touches[i].identifier, posX, posY);
+          const pos = getRelativeMousePosition(touches[i].clientX, touches[i].clientY);
+          if (pos) {
+            updatePointerDownData(pointer, touches[i].identifier, pos.x, pos.y);
+          }
         }
       },
       false
@@ -1252,9 +1277,10 @@ export default function SplashCursor({
         const touches = e.targetTouches;
         const pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) {
-          const posX = scaleByPixelRatio(touches[i].clientX);
-          const posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerMoveData(pointer, posX, posY, pointer.color);
+          const pos = getRelativeMousePosition(touches[i].clientX, touches[i].clientY);
+          if (pos) {
+            updatePointerMoveData(pointer, pos.x, pos.y, pointer.color);
+          }
         }
       },
       false
@@ -1263,6 +1289,8 @@ export default function SplashCursor({
     window.addEventListener('touchend', e => {
       const touches = e.changedTouches;
       const pointer = pointers[0];
+      // Note: We might want to check if the touch that ended was the one we were tracking?
+      // But keeping logic consistent with original simplistic implementation
       for (let i = 0; i < touches.length; i++) {
         updatePointerUpData(pointer);
       }
