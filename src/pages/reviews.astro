@@ -5,8 +5,13 @@ import { ReviewCardStatic } from "../components/ReviewCardStatic";
 import Aurora from "../components/Aurora";
 import Layout from "../layouts/Layout.astro";
 
+const allReviews = await getCollection("review");
 const reviews: { data: InferEntrySchema<"review">; body: string }[] =
-  await getCollection("review");
+  allReviews.sort((a, b) => {
+    const dateA = a.data.publishDate || "0000-00-00";
+    const dateB = b.data.publishDate || "0000-00-00";
+    return dateB.localeCompare(dateA);
+  });
 ---
 
 <Layout title="All Reviews">

@@ -50,6 +50,11 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
           <span className="tw-text-white tw-font-semibold tw-tracking-wide tw-text-base">
             {review.data.name}
           </span>
+          {review.data.position && (
+            <span className="tw-text-white/60 tw-text-xs tw-italic">
+              {review.data.position}
+            </span>
+          )}
           <p className="tw-text-white/80 tw-text-sm tw-leading-snug tw-mt-1 tw-line-clamp-3">
             {review.body}
           </p>

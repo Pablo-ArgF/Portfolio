@@ -11,6 +11,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     name: "",
     review: "",
     linkedinUrl: "",
+    position: "",
     image: null as File | null,
   });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -44,6 +45,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     data.append("name", formData.name);
     data.append("review", formData.review);
     if (formData.linkedinUrl) data.append("linkedinUrl", formData.linkedinUrl);
+    if (formData.position) data.append("position", formData.position);
     if (formData.image) data.append("image", formData.image);
 
     try {
@@ -108,9 +110,9 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
               onSubmit={handleSubmit}
               className="tw-flex tw-flex-col tw-items-center tw-gap-6"
             >
-              {/* Top Row: Avatar + Name */}
-              <div className="tw-flex tw-w-full tw-gap-4 tw-items-center">
-                <div className="tw-relative tw-w-20 tw-h-20">
+              {/* Top Row: Avatar + Name + Position */}
+              <div className="tw-flex tw-w-full tw-gap-4 tw-items-start">
+                <div className="tw-relative tw-w-20 tw-h-20 tw-flex-shrink-0">
                   <img
                     src={previewUrl || "/reviews/default-avatar.jpg"}
                     alt="preview"
@@ -132,14 +134,24 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
                   </label>
                 </div>
 
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleFormChange}
-                  className="tw-flex-1 tw-bg-transparent tw-text-white tw-font-semibold tw-text-lg tw-tracking-wide tw-outline-none tw-border-b tw-border-white/30 tw-py-2"
-                />
+                <div className="tw-flex tw-flex-col tw-flex-1 tw-gap-2">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    className="tw-bg-transparent tw-text-white tw-font-semibold tw-text-lg tw-tracking-wide tw-outline-none tw-border-b tw-border-white/30 tw-py-2"
+                  />
+                  <input
+                    type="text"
+                    name="position"
+                    placeholder="Your Position/Role (optional)"
+                    value={formData.position}
+                    onChange={handleFormChange}
+                    className="tw-bg-transparent tw-text-white/60 tw-text-sm tw-italic tw-outline-none tw-border-b tw-border-white/20 tw-py-1"
+                  />
+                </div>
               </div>
 
               {/* Textarea for Review */}

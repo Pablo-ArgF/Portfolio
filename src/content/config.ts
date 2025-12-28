@@ -16,6 +16,8 @@ const reviewCollection = defineCollection({
     name: z.string(),
     linkedinUrl: z.string().url().optional(),
     imageUrl: z.string().optional(),
+    position: z.string().optional(),
+    publishDate: z.string().optional(),
   }),
 });
 

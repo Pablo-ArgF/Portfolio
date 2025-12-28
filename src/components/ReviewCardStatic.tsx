@@ -59,14 +59,21 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
             />
           </div>
 
-          <span
-            className="
-              tw-text-white tw-font-semibold tw-tracking-wide
-              [font-size:clamp(1rem,1.2vw,1.25rem)]
-            "
-          >
-            {review.data.name}
-          </span>
+          <div className="tw-flex tw-flex-col">
+            <span
+              className="
+                tw-text-white tw-font-semibold tw-tracking-wide
+                [font-size:clamp(1rem,1.2vw,1.25rem)]
+              "
+            >
+              {review.data.name}
+            </span>
+            {review.data.position && (
+              <span className="tw-text-white/60 tw-text-xs tw-italic tw-mt-0.5">
+                {review.data.position}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* BODY TEXT */}
