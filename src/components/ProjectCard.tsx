@@ -13,24 +13,36 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug, fullDetail = false }) => {
 
   const containerClasses = fullDetail
-    ? "tw-w-[90%] sm:tw-w-full tw-max-w-[30em] tw-min-h-[28rem] sm:tw-min-h-[450px]"
+    ? "tw-w-[85%] sm:tw-w-full tw-max-w-[22em] sm:tw-max-w-[30em] tw-min-h-[28rem] sm:tw-min-h-[450px]"
     : "tw-w-[85%] sm:tw-w-full tw-max-w-[22em] sm:tw-max-w-[30em] tw-min-h-[28rem] sm:tw-min-h-[450px]";
 
   const imageHeight = fullDetail
-    ? "tw-h-48 sm:tw-h-72"
+    ? "tw-h-56 sm:tw-h-72"
     : "tw-h-48 sm:tw-h-72";
 
   const paddingClasses = fullDetail
-    ? "tw-p-4 sm:tw-p-6"
+    ? "tw-p-6 sm:tw-p-6"
     : "tw-p-4 sm:tw-p-6";
 
   const titleSize = fullDetail
-    ? "tw-text-lg sm:tw-text-3xl" // On larger screens, fullDetail gets bigger title than compact
+    ? "tw-text-2xl sm:tw-text-3xl"
     : "tw-text-lg sm:tw-text-2xl md:tw-text-3xl lg:tw-text-2xl";
 
   const tagSize = fullDetail
-    ? "tw-text-[10px] sm:tw-text-base sm:tw-px-3"
+    ? "tw-text-sm sm:tw-text-base sm:tw-px-3"
     : "tw-text-[10px] sm:tw-text-sm md:tw-text-base tw-px-2 sm:tw-px-3";
+
+  const descSize = fullDetail
+    ? "tw-text-base sm:tw-text-base md:tw-text-lg"
+    : "tw-text-sm sm:tw-text-base md:tw-text-lg";
+
+  const btnTextSize = fullDetail
+    ? "tw-text-base sm:tw-text-base"
+    : "tw-text-sm sm:tw-text-base";
+
+  const dateSize = fullDetail
+    ? "tw-text-sm sm:tw-text-lg"
+    : "tw-text-xs sm:tw-text-lg md:tw-text-lg";
 
   return (
     <a
@@ -69,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
             </h3>
 
             {/* Fechas */}
-            <p className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-text-neutral-400">
+            <p className={`${dateSize} tw-text-neutral-400`}>
               {project.fechaInicio} {project.fechaFin ? `– ${project.fechaFin}` : " - now"}
             </p>
 
@@ -91,7 +103,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
 
             {/* Descripción */}
             {project.descripcion && (
-              <p className="tw-text-sm sm:tw-text-base md:tw-text-lg tw-mt-3 tw-text-neutral-400 tw-line-clamp-3">
+              <p className={`${descSize} tw-mt-3 tw-text-neutral-400 tw-line-clamp-3`}>
                 {project.descripcion}
               </p>
             )}
@@ -108,8 +120,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                   e.stopPropagation();
                   trackEvent("Project Github Click", { project: project.titulo });
                 }}
-                className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff]
-                           tw-text-white tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
+                className={`tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff]
+                           tw-text-white tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors ${btnTextSize}`}
               >
                 <img src="/github.png" alt="GitHub" className="tw-w-5 sm:tw-w-6 tw-h-5 sm:tw-h-6 tw-object-contain" />
                 <span>GitHub</span>
@@ -125,8 +137,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                   e.stopPropagation();
                   trackEvent("Project Demo Click", { project: project.titulo });
                 }}
-                className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
-                           tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors tw-text-sm sm:tw-text-base"
+                className={`tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-white hover:tw-bg-gray-200
+                           tw-text-black tw-font-medium tw-rounded-full tw-px-5 tw-py-2 tw-transition-colors ${btnTextSize}`}
               >
                 <span>Visit</span>
                 <svg

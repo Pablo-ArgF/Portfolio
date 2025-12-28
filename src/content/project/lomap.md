@@ -9,6 +9,9 @@ imagen: "/projects/lomap.png"
 descripcion: "A privacy-first geospatial platform built on the Solid Protocol ensuring absolute data sovereignty. It decouples user data from application logic, empowering users to own their location history and social graph."
 ---
 
+
+<a href="https://www.youtube.com/watch?v=DRBpqaiGb58&ab_channel=LomapEn2a" class="tw-underline" target="_blank">Watch the demo video</a>
+
 Engineered a privacy-first geospatial platform that fundamentally decouples user data from application logic using the **Solid Protocol**. This architecture ensures that all personal location data, reviews, and social interactions are stored in user-controlled **Decentralized Web Nodes (Pods)**, guaranteeing absolute data sovereignty and compliance with the highest privacy standards.
 
 Developed within a high-performance squad of four engineers adhering to **Agile methodologies**, the project emphasized rapid iteration and rigorous quality assurance. The technical backbone features a type-safe **React** and **TypeScript** frontend, seamlessly integrated with a **Node.js/Express** backend.
