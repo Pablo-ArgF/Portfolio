@@ -39,7 +39,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
       <div className="tw-flex tw-items-center tw-gap-4 tw-bg-neutral-900 tw-backdrop-blur-xl tw-border tw-border-white/30 tw-rounded-2xl tw-shadow-lg tw-px-5 tw-py-4 tw-w-[20rem]">
         <div className="tw-w-14 tw-h-14 tw-flex-shrink-0">
           <img
-            src={review.data.imageUrl || `/reviews/${review.data.name}.jpg`}
+            src={review.data.imageUrl}
             alt={review.data.name}
             className="tw-w-full tw-h-full tw-rounded-full tw-object-cover tw-border tw-border-white/50 tw-bg-white/10"
             loading="lazy"
