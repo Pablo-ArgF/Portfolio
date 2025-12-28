@@ -151,21 +151,12 @@ portfolio/
 [![Portfolio](https://img.shields.io/badge/Portfolio-pabloaf.com-5227FF?style=for-the-badge)](https://pabloaf.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/pablo-argallero/)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/Pablo-ArgF)
-[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:pabloargf@gmail.com)
 
 </div>
 
 ---
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
 <div align="center">
-
-**Built with ❤️ by Pablo Argallero Fernández**
 
 ⭐ Star this repo if you find it useful!
 
