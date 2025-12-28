@@ -162,15 +162,15 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
       {/* Botones inferiores */}
 
-      <div className="tw-absolute tw-bottom-8 tw-flex tw-gap-6 tw-justify-center tw-w-full tw-z-50">
+      <div className="tw-absolute tw-bottom-8 tw-flex tw-gap-3 md:tw-gap-6 tw-justify-center tw-w-full tw-z-50 tw-px-4">
         <button
           onClick={() => setShowForm(true)}
           className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 
                     tw-bg-[#5227FF] hover:tw-bg-[#6a44ff] tw-text-white 
-                    tw-font-semibold tw-rounded-full tw-px-8 tw-py-4 
+                    tw-font-semibold tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm md:tw-px-8 md:tw-py-4 md:tw-text-base
                     tw-transition-colors tw-shadow-lg tw-shadow-[#5227FF]/60"
         >
-          <FaPaperPlane className="tw-w-5 tw-h-5 tw-animate-pulse" />
+          <FaPaperPlane className="tw-w-4 tw-h-4 md:tw-w-5 md:tw-h-5 tw-animate-pulse" />
           <span>Leave a Review</span>
         </button>
 
@@ -178,7 +178,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
         <a
           href="/reviews"
           className=" tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff] tw-text-white 
-          tw-font-semibold  tw-rounded-full tw-px-8 tw-py-4 tw-transition-colors tw-shadow-lg tw-shadow-[#5227FF]/60"
+          tw-font-semibold  tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm md:tw-px-8 md:tw-py-4 md:tw-text-base tw-transition-colors tw-shadow-lg tw-shadow-[#5227FF]/60"
         >
           All the Reviews
         </a>

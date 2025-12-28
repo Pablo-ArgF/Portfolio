@@ -13,6 +13,15 @@ export default {
         'ubuntu': ['Ubuntu', 'sans-serif'],
         'dancing': ['Dancing Script', 'cursive'],
       },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 80s linear infinite',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+      },
     },
   },
   plugins: [],

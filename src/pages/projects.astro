@@ -64,7 +64,12 @@ const projects = (await getCollection("project")).sort((a, b) =>
       >
         {
           projects.map((entry) => (
-            <ProjectCard project={entry.data} slug={entry.slug} client:only />
+            <ProjectCard
+              project={entry.data}
+              slug={entry.slug}
+              fullDetail={true}
+              client:only
+            />
           ))
         }
       </div>

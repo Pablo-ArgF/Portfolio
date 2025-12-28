@@ -7,9 +7,31 @@ interface ProjectCardProps {
   project: InferEntrySchema<"project">;
   className?: string;
   slug?: string;
+  fullDetail?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug, fullDetail = false }) => {
+
+  const containerClasses = fullDetail
+    ? "tw-w-[90%] sm:tw-w-full tw-max-w-[30em] tw-min-h-[28rem] sm:tw-min-h-[450px]"
+    : "tw-w-[85%] sm:tw-w-full tw-max-w-[22em] sm:tw-max-w-[30em] tw-min-h-[28rem] sm:tw-min-h-[450px]";
+
+  const imageHeight = fullDetail
+    ? "tw-h-48 sm:tw-h-72"
+    : "tw-h-48 sm:tw-h-72";
+
+  const paddingClasses = fullDetail
+    ? "tw-p-4 sm:tw-p-6"
+    : "tw-p-4 sm:tw-p-6";
+
+  const titleSize = fullDetail
+    ? "tw-text-lg sm:tw-text-3xl" // On larger screens, fullDetail gets bigger title than compact
+    : "tw-text-lg sm:tw-text-2xl md:tw-text-3xl lg:tw-text-2xl";
+
+  const tagSize = fullDetail
+    ? "tw-text-[10px] sm:tw-text-base sm:tw-px-3"
+    : "tw-text-[10px] sm:tw-text-sm md:tw-text-base tw-px-2 sm:tw-px-3";
+
   return (
     <a
       href={`/projects/${slug}`}
@@ -23,10 +45,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
             tw-bg-neutral-900/90 tw-rounded-2xl tw-shadow-lg tw-flex tw-flex-col
             tw-overflow-hidden tw-border tw-border-neutral-800 tw-transition-transform
             tw-duration-150 tw-cursor-pointer tw-relative
-            tw-w-full tw-max-w-[30em]
+            ${containerClasses}
             sm:tw-h-[35em] md:tw-h-[40em] lg:tw-h-[40em]
           `}
-        style={{ minHeight: "450px" }}
       >
         {/* Imagen */}
         {project.imagen && (
@@ -34,16 +55,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
             <img
               src={project.imagen}
               alt={project.titulo}
-              className="tw-w-full tw-h-72 tw-object-cover tw-object-center"
+              className={`tw-w-full ${imageHeight} tw-object-cover tw-object-center`}
             />
           </div>
         )}
 
         {/* Contenido */}
-        <div className="tw-p-6 tw-text-center tw-text-neutral-200 tw-flex tw-flex-col tw-flex-grow tw-justify-between">
+        <div className={`${paddingClasses} tw-text-center tw-text-neutral-200 tw-flex tw-flex-col tw-flex-grow tw-justify-between`}>
           <div className="tw-flex tw-flex-col tw-gap-3">
             {/* Título */}
-            <h3 className="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-2xl tw-font-semibold tw-text-white">
+            <h3 className={`${titleSize} tw-font-semibold tw-text-white`}>
               {project.titulo}
             </h3>
 
@@ -59,7 +80,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className = "", slug
                   {project.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="tw-text-xs sm:tw-text-sm md:tw-text-base tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-px-3 tw-py-1 tw-rounded-full tw-whitespace-nowrap tw-flex-shrink-0"
+                      className={`${tagSize} tw-bg-[#5227FF]/30 tw-text-[#B0AFFF] tw-py-1 tw-rounded-full tw-whitespace-nowrap tw-flex-shrink-0`}
                     >
                       {skill}
                     </span>

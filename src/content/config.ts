@@ -14,8 +14,8 @@ const experienceCollection = defineCollection({
 const reviewCollection = defineCollection({
   schema: z.object({
     name: z.string(),
-    linkedinUrl: z.string().url().optional(), 
-    imageUrl: z.string().url().optional(),    
+    linkedinUrl: z.string().url().optional(),
+    imageUrl: z.string().optional(),
   }),
 });
 
@@ -27,8 +27,8 @@ const projectCollection = defineCollection({
     skills: z.array(z.string()).optional(),
     githubUrl: z.string().url().optional(),
     projectUrl: z.string().url().optional(),
-    imagen: z.string().optional(), 
-    descripcion: z.string().optional(), 
+    imagen: z.string().optional(),
+    descripcion: z.string().optional(),
   }),
 });
 

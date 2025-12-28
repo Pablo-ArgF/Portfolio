@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-:root{
+:root {
 
     --bg-color: #000;
 
-    --btn-color: #fdfdfd;/* button color*/
-    --btn-bg: #7e22ce;/* button bg color*/
+    --btn-color: #fdfdfd;
+    /* button color*/
+    --btn-bg: #7e22ce;
+    /* button bg color*/
 
     --primary-text-color: #7e22ce;
     --header-link-hover: #7e22ce;
@@ -18,14 +20,14 @@ html {
     font-family: "Ubuntu", sans-serif;
 }
 
-header{
+header {
     /* background-color: #fff;
     color: #000; */
     color: #b1b1b1;
 }
 
 
-header > .collapsible-header{
+header>.collapsible-header {
     display: flex;
     gap: 1rem;
     width: 100%;
@@ -35,7 +37,7 @@ header > .collapsible-header{
     transition: width 0.3s ease;
 }
 
-.animated-collapse{
+.animated-collapse {
     transition: width 0.3s ease;
 }
 
@@ -55,26 +57,28 @@ header > .collapsible-header{
     /* background-color: var(--header-link-hover); */
 }
 
-.primary-text-color{
+.primary-text-color {
     color: var(--primary-text-color);
 }
 
-.gradient-text{
-    background: rgb(215,215,215);
-    background: linear-gradient(90deg, rgba(215,215,215,1) 18%, rgba(136,136,136,1) 71%);
+.gradient-text {
+    background: rgb(215, 215, 215);
+    background: linear-gradient(90deg, rgba(215, 215, 215, 1) 18%, rgba(136, 136, 136, 1) 71%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero-section{
+.hero-section {
     /* background-image: url("../assets/images/background/dots.svg"); */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
     background-size: cover;
 }
 
-.hero-img-bg-grad{
-    background: rgb(126,34,206);
+.hero-img-bg-grad {
+    background: rgb(126, 34, 206);
     background: linear-gradient(90deg, #7e22ce91 8%, #625aafae 31%, #7badbbbc 76%, #54d2d0ca 89%);
     filter: blur(50px);
     opacity: 0.5;
@@ -144,33 +148,33 @@ header > .collapsible-header{
 
 #dashboard {
     /* transform-origin: bottom center; */
-    transform: perspective(1200px) translateX(0px) translateY(12px) scale(0.8)
-        rotate(0deg) rotateX(70deg);
+    transform: perspective(1200px) translateX(0px) translateY(12px) scale(0.8) rotate(0deg) rotateX(70deg);
     transition: transform 0.5;
 }
 
-.border-gradient{
-    background: rgb(219,215,213);
-    background: linear-gradient(180deg, rgba(219,215,213,1) 35%, rgba(214,211,233,0) 71%);
+.border-gradient {
+    background: rgb(219, 215, 213);
+    background: linear-gradient(180deg, rgba(219, 215, 213, 1) 35%, rgba(214, 211, 233, 0) 71%);
     /* background-image: linear-gradient(90deg, #7e22ce91 8%, #625aafae 31%, #7badbbbc 76%, #54d2d0ca 89%); */
     padding: 2px;
     border-radius: 10px;
 }
-.border-gradient>div{
+
+.border-gradient>div {
     /* background-color: var(--bg-color); */
     background-color: var(--bg-color);
     border-radius: inherit;
 }
 
-.opacity-0{
+.opacity-0 {
     opacity: 0 !important;
 }
 
-.opacity-100{
+.opacity-100 {
     opacity: 100 !important;
 }
 
-.btn{
+.btn {
     padding: 10px 15px;
     width: max-content;
     border-radius: 5px;
@@ -182,15 +186,13 @@ header > .collapsible-header{
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {}
 
-}
-
-.btn:disabled{
+.btn:disabled {
     cursor: default;
 }
 
-.input{
+.input {
     padding: 10px;
     background-color: transparent;
     border-radius: 5px;
@@ -200,7 +202,9 @@ header > .collapsible-header{
     /* transition: border 0.3s; */
 }
 
-.input:active, .input:focus, .input:focus-within{
+.input:active,
+.input:focus,
+.input:focus-within {
     border: 1px solid var(--input-hover-bd-color) !important;
 }
 
@@ -210,83 +214,50 @@ header > .collapsible-header{
     width: 100%;
     max-width: 800px;
 }
-  
+
 .carousel {
     display: inline-block;
     animation: scroll 10s linear infinite;
 }
-  
+
 .carousel-img {
     display: inline-block;
     margin: 0 20px;
 }
 
-/* Tech Stack Carousel Styles */
-.tech-stack-carousel {
-    overflow: hidden;
-    width: 100%;
-    max-width: 1000px;
-    margin-top: 1.5rem;
-    padding: 20px 0;
-}
 
-.tech-stack-track {
-    display: flex;
-    animation: tech-scroll 30s linear infinite;
-    gap: 2rem;
-    align-items: center;
-}
-
-.tech-logo {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90px;
-    height: 90px;
-    transition: all 0.3s ease;
-}
-
-.tech-logo:hover {
-    transform: translateY(-2px) scale(1.05);
-}
-
-.tech-icon {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(0.8);
-    transition: all 0.3s ease;
-}
-
-.tech-logo:hover .tech-icon {
-    filter: grayscale(0%) brightness(1);
-}
-  
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
 }
 
-@keyframes tech-scroll {
-    0% {
+
+
+@keyframes infinite-scroll {
+    from {
         transform: translateX(0);
     }
-    100% {
+
+    to {
         transform: translateX(-50%);
     }
 }
 
-.footer-link{
+.animate-infinite-scroll {
+    animation: infinite-scroll 80s linear infinite;
+}
+
+.footer-link {
     color: #c7c6c6;
     transition: color 0.3s;
 }
 
-.footer-link:hover{
+.footer-link:hover {
     color: #fff;
 }
 
@@ -342,40 +313,28 @@ header > .collapsible-header{
         box-shadow: 3px 0px 3px 2px #9f9f9f;
     }
 
-    .header-links{
+    .header-links {
         color: rgb(255, 255, 255);
     }
-    
-    /* Mobile tech stack adjustments */
-    .tech-logo {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .tech-stack-track {
-        gap: 1.5rem;
-    }
-    
-    .tech-stack-carousel {
-        max-width: 100%;
-    }
-    
+
+
     /* Mobile memoji adjustments */
     .myimage-placeholder {
         width: 150px;
         height: 150px;
     }
-    
+
     .myimage-placeholder i {
         font-size: 4rem !important;
     }
+
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
-      }
+    }
+
     .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-      
-}
 
+}
