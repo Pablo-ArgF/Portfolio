@@ -48,7 +48,7 @@ export const ReviewCardStatic: React.FC<ReviewCardStaticProps> = ({ review }) =>
             "
           >
             <img
-              src={review.data.imageUrl}
+              src={review.data.imageUrl || "/reviews/default-avatar.jpg"}
               alt={review.data.name}
               className="
                 tw-w-full tw-h-full tw-rounded-full tw-object-cover
