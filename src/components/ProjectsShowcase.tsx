@@ -22,7 +22,7 @@ const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({
     <section
       className={`
         tw-relative tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-start tw-bg-black
-        ${isFullPage ? "tw-min-h-svh tw-pb-20" : "tw-h-svh tw-overflow-hidden"}
+        ${isFullPage ? "tw-min-h-screen tw-pb-20" : "tw-h-screen tw-overflow-hidden"}
       `}
     >
       {/* Fondo animado */}
@@ -39,10 +39,7 @@ const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({
       />
 
       {/* Título */}
-      <h2
-        className="tw-z-20 tw-text-4xl tw-font-medium tw-text-gray-200 tw-text-center max-md:tw-text-3xl"
-        style={isFullPage ? { marginTop: "calc(6rem + env(safe-area-inset-top, 0px))" } : { marginTop: "2.5rem" }}
-      >
+      <h2 className="tw-z-20 tw-mt-10 tw-text-4xl tw-font-medium tw-text-gray-200 tw-text-center max-md:tw-text-3xl">
         {title}
       </h2>
 

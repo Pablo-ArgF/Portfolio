@@ -133,12 +133,9 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
   };
 
   return (
-    <div className="tw-relative tw-w-full tw-min-h-svh tw-flex tw-flex-col tw-items-center tw-justify-between">
+    <div className="tw-relative tw-w-full tw-h-screen tw-flex tw-flex-col tw-items-center tw-justify-between">
       {/* Título */}
-      <h2
-        className="tw-text-4xl tw-font-medium tw-text-gray-200 tw-text-center"
-        style={{ marginTop: "calc(3rem + env(safe-area-inset-top, 0px))" }}
-      >
+      <h2 className="tw-text-4xl tw-font-medium tw-text-gray-200 tw-text-center tw-mt-12">
         Reviews
       </h2>
 
@@ -172,10 +169,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
       {/* Botones inferiores */}
 
-      <div
-        className="tw-absolute tw-flex tw-gap-3 md:tw-gap-6 tw-justify-center tw-w-full tw-z-50 tw-px-4"
-        style={{ bottom: "calc(2rem + env(safe-area-inset-bottom, 0px))" }}
-      >
+      <div className="tw-absolute tw-bottom-8 tw-flex tw-gap-3 md:tw-gap-6 tw-justify-center tw-w-full tw-z-50 tw-px-4">
         <button
           onClick={() => setShowForm(true)}
           className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 
