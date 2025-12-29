@@ -51,16 +51,22 @@ const generateNonOverlappingY = (
 export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
   const [items, setItems] = useState<MovingReview[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [containerHeight, setContainerHeight] = useState<number>(window.innerHeight);
+  // Use a ref for containerHeight to avoid triggering re-renders on Safari mobile scroll
+  const containerHeightRef = React.useRef<number>(window.innerHeight);
+  const isInitialMount = React.useRef(true);
 
   const speed = 0.08;
 
+  // Update containerHeight ref without triggering re-renders
   useEffect(() => {
-    const handleResize = () => setContainerHeight(window.innerHeight);
+    const handleResize = () => {
+      containerHeightRef.current = window.innerHeight;
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Only initialize reviews on mount or when reviews array changes
   useEffect(() => {
     const positions: { top: number; height: number }[] = [];
     let baseReviews = reviews;
@@ -72,12 +78,13 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
     const init = baseReviews.map((r, i) => {
       const depth = getRandomDepth();
-      const y = generateNonOverlappingY(positions, depth, containerHeight);
+      const y = generateNonOverlappingY(positions, depth, containerHeightRef.current);
       positions.push({ top: y, height: reviewHeights[depth] });
       return { id: `${r.data.name}-${i}`, x: getRandomBetween(-30, 100), y, depth, review: r };
     });
     setItems(init);
-  }, [reviews, containerHeight]);
+    isInitialMount.current = false;
+  }, [reviews]); // Only depend on reviews, not containerHeight
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -105,7 +112,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
                 height: reviewHeights[p.depth],
               })),
               item.depth,
-              containerHeight
+              containerHeightRef.current // Use ref instead of state
             );
           }
         }
@@ -115,7 +122,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
     }, 20);
 
     return () => clearInterval(interval);
-  }, [containerHeight]);
+  }, []); // No dependencies needed since we use refs
 
 
 
