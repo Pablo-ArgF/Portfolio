@@ -73,7 +73,7 @@ const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({
           <a
             href="/projects"
             className="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-bg-[#5227FF] hover:tw-bg-[#6a44ff] tw-text-white 
-            tw-font-semibold  tw-rounded-full tw-px-8 tw-py-4 tw-transition-colors tw-shadow-lg tw-shadow-[#5227FF]/60"
+            tw-font-semibold tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm md:tw-px-8 md:tw-py-4 md:tw-text-base tw-transition-colors tw-shadow-lg tw-shadow-[#5227FF]/60"
           >
             All the projects
           </a>
