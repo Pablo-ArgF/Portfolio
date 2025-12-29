@@ -1,6 +1,6 @@
 ---
 name: "Marcos Segade León"
-linkedinUrl: "www.linkedin.com/in/marcos-segade-león-5452ba253"
+linkedinUrl: "https://www.linkedin.com/in/marcos-segade-león-5452ba253"
 position: "Software Engineer at Plexus Tech"
 publishDate: "2025-12-29"
 ---
