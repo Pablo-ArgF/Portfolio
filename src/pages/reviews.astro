@@ -16,7 +16,7 @@ const reviews: { data: InferEntrySchema<"review">; body: string }[] =
 
 <Layout title="All Reviews">
   <div
-    class="tw-relative tw-w-full tw-min-h-screen tw-bg-neutral-950 tw-text-white"
+    class="tw-relative tw-w-full tw-min-h-svh tw-bg-neutral-950 tw-text-white"
   >
     <!-- Fondo Aurora -->
     <div class="tw-inset-0 tw-z-0">
@@ -32,10 +32,11 @@ const reviews: { data: InferEntrySchema<"review">; body: string }[] =
     <!-- Botón volver -->
     <a
       href="/#reviews"
-      class="tw-absolute tw-top-4 tw-left-4 tw-z-30 tw-flex tw-items-center tw-gap-2
+      class="tw-absolute tw-left-4 tw-z-30 tw-flex tw-items-center tw-gap-2
         tw-bg-white/10 hover:tw-bg-white/20 tw-text-white tw-font-semibold tw-rounded-full
         tw-transition-all tw-shadow-md
         tw-px-4 tw-py-2 tw-text-sm md:tw-text-base"
+      style="top: calc(1rem + env(safe-area-inset-top, 0px));"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,8 @@ const reviews: { data: InferEntrySchema<"review">; body: string }[] =
 
     <!-- Sección de reviews -->
     <section
-      class="tw-relative tw-z-10 tw-flex tw-flex-col tw-items-center tw-pt-24 tw-px-6"
+      class="tw-relative tw-z-10 tw-flex tw-flex-col tw-items-center tw-px-6"
+      style="padding-top: calc(6rem + env(safe-area-inset-top, 0px));"
     >
       <h1
         class="tw-font-extrabold tw-text-center tw-mb-12

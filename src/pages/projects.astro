@@ -10,14 +10,15 @@ const projects = (await getCollection("project")).sort((a, b) =>
 
 <Layout title="All Projects">
   <div
-    class="tw-relative tw-w-full tw-min-h-screen tw-bg-neutral-950 tw-text-white"
+    class="tw-relative tw-w-full tw-min-h-svh tw-bg-neutral-950 tw-text-white"
   >
     <!-- Botón volver -->
     <a
       href="/#projects"
-      class="tw-absolute tw-top-4 tw-left-4 sm:tw-top-6 sm:tw-left-6 tw-z-30 tw-flex tw-items-center tw-gap-2
+      class="tw-absolute tw-left-4 sm:tw-left-6 tw-z-30 tw-flex tw-items-center tw-gap-2
              tw-bg-[#ffffff]/10 hover:tw-bg-[#ffffff]/20 tw-text-white tw-font-semibold
              tw-rounded-full tw-px-3 tw-py-2 sm:tw-px-5 sm:tw-py-3 tw-text-sm sm:tw-text-lg tw-transition-all tw-shadow-md"
+      style="top: calc(1rem + env(safe-area-inset-top, 0px));"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
