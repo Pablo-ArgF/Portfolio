@@ -1,6 +1,6 @@
 ---
 name: "Alfonso Pérez"
-linkedinUrl: "www.linkedin.com/in/alfonso-perezsanchez"
+linkedinUrl: "https://www.linkedin.com/in/alfonso-perezsanchez/"
 imageUrl: "/reviews/alfonso-perez.jpeg"
 position: "Software Engineering Intern at NTT Data"
 publishDate: "2026-01-07"
