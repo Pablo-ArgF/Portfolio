@@ -14,7 +14,7 @@ const experienceCollection = defineCollection({
 const reviewCollection = defineCollection({
   schema: z.object({
     name: z.string(),
-    linkedinUrl: z.string().url().optional(),
+    linkedinUrl: z.string().optional(),
     imageUrl: z.string().optional(),
     position: z.string().optional(),
     publishDate: z.string().optional(),
