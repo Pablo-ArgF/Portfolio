@@ -46,6 +46,13 @@ const {
   </head>
   <body class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white">
     <slot />
+    <footer
+      class="tw-mt-auto tw-py-10 tw-border-t tw-border-white/10 tw-bg-black tw-text-center tw-z-10"
+    >
+      <p class="tw-text-neutral-500 tw-text-sm">
+        &copy; {new Date().getFullYear()} Pablo Argallero Fernández. All rights reserved.
+      </p>
+    </footer>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
@@ -65,18 +72,18 @@ const {
       async
       src="https://plausible.pabloaf.com/js/pa-CP1c9-_PY75dZxcK6znx7.js"
     ></script>
-    <script>
-      ((window.plausible =
+    <script is:inline>
+      window.plausible =
         window.plausible ||
         function () {
-          (plausible.q = plausible.q || []).push(arguments);
-        }),
-        (plausible.init =
-          plausible.init ||
-          function (i) {
-            plausible.o = i || {};
-          }));
-      plausible.init();
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+      window.plausible.init =
+        window.plausible.init ||
+        function (i) {
+          window.plausible.o = i || {};
+        };
+      window.plausible.init();
     </script>
     <script>
       document.addEventListener("click", (event) => {

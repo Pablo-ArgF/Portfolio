@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLinkedin, FaPaperPlane, FaUpload, FaTimes, FaCheckCircle } from "react-icons/fa";
+import { FaLinkedin, FaPaperPlane, FaUpload, FaTimes, FaClock } from "react-icons/fa";
 
 interface ReviewFormProps {
   onClose: () => void;
@@ -51,10 +51,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     try {
       await fetch("https://landing.pabloaf.com/create-review", { method: "POST", body: data });
       setIsSuccess(true);
-      // Cerrar automáticamente después de 3 segundos
+      // Cerrar automáticamente después de 12 segundos
       setTimeout(() => {
         onClose();
-      }, 6000);
+      }, 12000);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -92,9 +92,9 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="tw-text-green-500"
+                className="tw-text-blue-500"
               >
-                <FaCheckCircle size={80} />
+                <FaClock size={80} />
               </motion.div>
               <h3 className="tw-text-2xl tw-font-bold tw-text-white">Review Submitted!</h3>
               <p className="tw-text-neutral-400 tw-max-w-xs">
