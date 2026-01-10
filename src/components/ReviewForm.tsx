@@ -98,7 +98,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
               </motion.div>
               <h3 className="tw-text-2xl tw-font-bold tw-text-white">Review Submitted!</h3>
               <p className="tw-text-neutral-400 tw-max-w-xs">
-                Thank you for your feedback. Your review has been sent efficiently and will be posted after a quick verification.
+                Thank you for your feedback. Your review has been sent correctly and will be posted once it has been approved.
               </p>
             </motion.div>
           ) : (
