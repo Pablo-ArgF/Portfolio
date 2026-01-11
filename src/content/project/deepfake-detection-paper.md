@@ -3,6 +3,7 @@ titulo: "XAI Research: Deepfake Detection"
 fechaInicio: "2024-06"
 skills: ["Research", "TensorFlow", "Grad-CAM", "Python", "React", "XAI"]
 githubUrl: "https://github.com/Pablo-ArgF/Deepfake_Detector"
+projectUrl: "https://deepfake.pabloaf.com/"
 imagen: "/projects/deepfake-paper.jpg"
 descripcion: "Advanced research initiative focused on Explainable AI (XAI) methods for deepfake detection, culminating in a scientific paper currently under review."
 ---
