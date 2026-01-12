@@ -57,11 +57,18 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
   const speed = 0.08;
 
+  const [isMobile, setIsMobile] = useState(false);
+
   // Update containerHeight ref without triggering re-renders
   useEffect(() => {
     const handleResize = () => {
       containerHeightRef.current = window.innerHeight;
+      setIsMobile(window.innerWidth < 768);
     };
+
+    // Set initial value safely
+    handleResize();
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -70,8 +77,9 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
   useEffect(() => {
     const positions: { top: number; height: number }[] = [];
     let baseReviews = reviews;
-    if (reviews.length > 15) {
-      baseReviews = reviews.slice(0, 15);
+    const limit = isMobile ? 10 : 15;
+    if (reviews.length > limit) {
+      baseReviews = reviews.slice(0, limit);
     } else if (reviews.length < 4) {
       baseReviews = [...reviews, ...reviews.slice(0, 4 - reviews.length)];
     }
@@ -84,7 +92,7 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
     });
     setItems(init);
     isInitialMount.current = false;
-  }, [reviews]); // Only depend on reviews, not containerHeight
+  }, [reviews, isMobile]); // added isMobile dependency to re-init on breakpoint change
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -127,9 +135,9 @@ export const ReviewsFlow: React.FC<ReviewsFlowProps> = ({ reviews }) => {
 
 
   const depthStyles = {
-    front: { scale: 1, blur: 0, opacity: 1, zIndex: 30 },
-    middle: { scale: 0.85, blur: 0.75, opacity: 0.9, zIndex: 20 },
-    back: { scale: 0.7, blur: 1, opacity: 0.6, zIndex: 10 },
+    front: { scale: isMobile ? 0.9 : 1, blur: 0, opacity: 1, zIndex: 30 },
+    middle: { scale: isMobile ? 0.75 : 0.85, blur: 0.75, opacity: 0.9, zIndex: 20 },
+    back: { scale: isMobile ? 0.6 : 0.7, blur: 1, opacity: 0.6, zIndex: 10 },
   };
 
   return (
