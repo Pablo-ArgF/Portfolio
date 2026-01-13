@@ -4,6 +4,7 @@ fechaInicio: "2023-10"
 fechaFin: "2024-06"
 skills: ["TensorFlow", "Python", "React", "Flask", "Docker", "Pandas", "Nginx"]
 githubUrl: "https://github.com/Pablo-ArgF/Deepfake_Detector"
+projectUrl: "https://hdl.handle.net/10651/74464"
 imagen: "/projects/deepfake.jpg"
 descripcion: "A sophisticated forensic framework for detecting synthetic media, leveraging hybrid CNN-RNN architectures to provide granular, frame-by-frame explainability and temporal analysis."
 ---
