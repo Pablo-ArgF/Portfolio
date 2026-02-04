@@ -1,6 +1,6 @@
 ---
 name: "Carlos Diez Fernández"
-linkedinUrl: "www.linkedin.com/in/carlos-diez-fernández-1815072a0"
+linkedinUrl: "https://www.linkedin.com/in/carlos-diez-fern%C3%A1ndez-1815072a0"
 imageUrl: "/reviews/carlos-diez-fernandez.jpeg"
 position: "Ind and Func AI Decision Science Analyst"
 publishDate: "2026-02-01"
