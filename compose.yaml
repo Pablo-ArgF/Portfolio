@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
     ports:
       # Route pabloaf.com to this port only if replacing the old site origin.
-      - "${SITE_BIND_IP:-127.0.0.1}:${SITE_PORT:-8080}:80"
+      - "${SITE_BIND_IP:-127.0.0.1}:${SITE_PORT:-8081}:80"
     volumes:
       - portfolio-site:/usr/share/nginx/html:ro
     depends_on:

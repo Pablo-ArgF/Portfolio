@@ -48,7 +48,8 @@ REVIEW_API_BIND_IP=10.10.30.10
 REVIEW_API_PORT=9000
 DEPLOY_WEBHOOK_BIND_IP=10.10.30.10
 DEPLOY_WEBHOOK_PORT=9001
-SITE_PORT=8080
+SITE_BIND_IP=10.10.30.10
+SITE_PORT=8081
 ```
 
 Use the actual address assigned to the `publicservices` VM if it differs from `10.10.30.10`.
@@ -106,9 +107,9 @@ Because `cloudflared` runs in Docker, configure the existing tunnel with these r
 ```yaml
 ingress:
   - hostname: pabloaf.com
-    service: http://10.10.30.10:8080
+    service: http://10.10.30.10:8081
   - hostname: www.pabloaf.com
-    service: http://10.10.30.10:8080
+    service: http://10.10.30.10:8081
   - hostname: landing.pabloaf.com
     service: http://10.10.30.10:9000
   - hostname: webhooks.pabloaf.com
@@ -120,8 +121,8 @@ Dashboard equivalents:
 
 | Public hostname | Service type | URL |
 |---|---|---|
-| `pabloaf.com` | HTTP | `http://10.10.30.10:8080` |
-| `www.pabloaf.com` | HTTP | `http://10.10.30.10:8080` |
+| `pabloaf.com` | HTTP | `http://10.10.30.10:8081` |
+| `www.pabloaf.com` | HTTP | `http://10.10.30.10:8081` |
 | `landing.pabloaf.com` | HTTP | `http://10.10.30.10:9000` |
 | `webhooks.pabloaf.com` | HTTP | `http://10.10.30.10:9001` |
 
@@ -130,10 +131,10 @@ Do not point `landing.pabloaf.com` at the old `192.168.2.10` address. Do not use
 If `pabloaf.com` is still served by the old PM2/Caddy deployment, verify the new site first:
 
 ```bash
-curl http://10.10.30.10:8080/
+curl http://10.10.30.10:8081/
 ```
 
-Only after it returns the expected site should you move the `pabloaf.com` and `www.pabloaf.com` routes to port `8080`.
+Only after it returns the expected site should you move the `pabloaf.com` and `www.pabloaf.com` routes to port `8081`.
 
 When managing DNS from the command line instead of the Cloudflare dashboard, create the additional tunnel hostname with the tunnel's existing name or ID:
 
