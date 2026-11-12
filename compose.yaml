@@ -47,7 +47,7 @@ services:
     volumes:
       - portfolio-site:/site
     tmpfs:
-      - /work
+      - /work:rw,exec
     security_opt:
       - no-new-privileges:true
     cap_drop:
