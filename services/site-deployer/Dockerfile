@@ -1,7 +1,6 @@
 FROM node:22-bookworm-slim
 
 ENV NODE_ENV=production
-ENV TMPDIR=/work
 WORKDIR /app
 
 RUN apt-get update \
@@ -15,5 +14,6 @@ RUN npm install --omit=dev --ignore-scripts && npm cache clean --force
 
 COPY src ./src
 
+ENV TMPDIR=/work
 EXPOSE 3000
 CMD ["node", "src/server.js"]
