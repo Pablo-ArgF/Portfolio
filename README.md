@@ -133,7 +133,7 @@ portfolio/
 
 ### Review submissions
 
-Review submissions are handled by the Dockerized API in `services/review-api`. It receives the form, creates a `review-*` branch with the Markdown/image changes, and opens a GitHub pull request for approval. See [docs/reviews-docker.md](docs/reviews-docker.md) for the server setup, environment variables, Docker commands, and Cloudflare Tunnel route.
+Review submissions are handled by the Dockerized stack in `services/review-api` and `services/site-deployer`. The API creates a `review-*` branch and opens a GitHub pull request; after the approved PR is merged into `master`, the signed GitHub webhook rebuilds Astro and publishes the new static release. See [docs/reviews-docker.md](docs/reviews-docker.md) for the server setup, webhook, Docker commands, and Cloudflare Tunnel routes.
 
 ### Interactive Elements
 - **Particle System**: Dynamic dot grid background with mouse interaction
