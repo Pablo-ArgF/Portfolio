@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedin, FaPaperPlane, FaUpload, FaTimes, FaClock } from "react-icons/fa";
 
+const REVIEW_API_URL = (import.meta.env.PUBLIC_REVIEW_API_URL || "https://landing.pabloaf.com").replace(/\/$/, "");
+const REVIEW_REQUEST_TIMEOUT_MS = 20_000;
+
 interface ReviewFormProps {
   onClose: () => void;
 }
@@ -48,8 +51,27 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     if (formData.position) data.append("position", formData.position);
     if (formData.image) data.append("image", formData.image);
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), REVIEW_REQUEST_TIMEOUT_MS);
+
     try {
-      await fetch("https://landing.pabloaf.com/create-review", { method: "POST", body: data });
+      const response = await fetch(`${REVIEW_API_URL}/create-review`, {
+        method: "POST",
+        body: data,
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        let message = "The review service rejected the request.";
+        try {
+          const payload = await response.json();
+          if (typeof payload?.error === "string") message = payload.error;
+        } catch {
+          // Keep the generic message when the API does not return JSON.
+        }
+        throw new Error(message);
+      }
+
       setIsSuccess(true);
       // Cerrar automáticamente después de 12 segundos
       setTimeout(() => {
@@ -57,8 +79,15 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
       }, 12000);
     } catch (err) {
       console.error(err);
-      setError("Something went wrong. Please try again.");
+      setError(
+        err instanceof DOMException && err.name === "AbortError"
+          ? "The review service took too long to respond. Please try again later."
+          : err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again.",
+      );
     } finally {
+      window.clearTimeout(timeoutId);
       setSubmitting(false);
     }
   };
@@ -121,7 +150,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
                   <input
                     type="file"
                     name="image"
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
                     id="image-upload"
                     onChange={handleFormChange}
                     className="tw-hidden"

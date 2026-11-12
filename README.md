@@ -131,6 +131,10 @@ portfolio/
 - **Experience**: Timeline of professional roles and achievements
 - **Reviews**: Client testimonials and peer feedback
 
+### Review submissions
+
+Review submissions are handled by the Dockerized API in `services/review-api`. It receives the form, creates a `review-*` branch with the Markdown/image changes, and opens a GitHub pull request for approval. See [docs/reviews-docker.md](docs/reviews-docker.md) for the server setup, environment variables, Docker commands, and Cloudflare Tunnel route.
+
 ### Interactive Elements
 - **Particle System**: Dynamic dot grid background with mouse interaction
 - **Aurora Effect**: Animated gradient backgrounds
